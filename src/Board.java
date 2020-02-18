@@ -21,10 +21,19 @@ public class Board {
             }
         }
     }
-
+    protected ImageIcon createImageIcon(String path,
+                                        String description) {
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL, description);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
+    }
     public void display() {
         try {
-            this.boardDisplay = new ImageIcon("checkerboard.jpg");
+            this.boardDisplay = createImageIcon("checkerboard.png", "Checkerboard");
         } catch (Exception e) {
             System.out.print("Error finding image");
         }
@@ -37,7 +46,9 @@ public class Board {
         JLabel background = new JLabel(boardDisplay, JLabel.CENTER);
         //jf.pack();
         jf.add(background);
+        jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
+        jf.setUndecorated(true);
         jf.setVisible(true);
 
 
