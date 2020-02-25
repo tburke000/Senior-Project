@@ -9,10 +9,12 @@ import java.io.File;
 public class Board {
     public Square[][] board;
     public ImageIcon boardDisplay;
-
-    public Board () {
+    private String type;
+    public JFrame jf;
+    public Board (String type) {
         this.board = new Square[8][8];
-
+        this.type = type;
+        this.jf = new JFrame();
         Square square;
         for (int row = 0; row < 8; row++) {
             for (int column = 0; column < 8; column++) {
@@ -33,11 +35,11 @@ public class Board {
     }
     public void display() {
         try {
-            this.boardDisplay = createImageIcon("checkerboard.png", "Checkerboard");
+            this.boardDisplay = createImageIcon(type+".png", "Board");
         } catch (Exception e) {
             System.out.print("Error finding image");
         }
-        JFrame jf = new JFrame();
+
         jf.setSize(1920, 1080);
         JPanel panel = new JPanel();
 
@@ -55,7 +57,9 @@ public class Board {
     }
 
     public static void main(String[] args) {
-        Board board = new Board();
-        board.display();
+        Checkers ck = new Checkers();
+        for (Piece i: ck.pieces) {
+            System.out.println(i.pos.toString());
+        }
     }
 }

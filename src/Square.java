@@ -12,4 +12,17 @@ public class Square {
     public String toString () {
         return (row) + ", " + (column);
     }
+
+    /**
+     * Returns the position of the square as an int array
+     * @return The position of the square as an int array
+     */
+    public int[] getPos () {
+        return new int[]{row, column};
+    }
+
+    public void setPos (int row, int column) {
+        this.row = row;
+        this.column = column;
+    }
 }

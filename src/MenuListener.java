@@ -24,6 +24,7 @@ public class MenuListener implements ActionListener {
         }
         else if(source == Launcher.chess)
         {
+                Launcher.start(new Chess());
                 Launcher.jf.dispose();
 
         }

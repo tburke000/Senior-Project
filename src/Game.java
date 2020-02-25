@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public abstract class Game {
     public static JFrame gameWindow = new JFrame();
     public LinkedList<Piece> pieces = new LinkedList<>();
-
+    public String name;
     /**
      * Starts the game.
      */

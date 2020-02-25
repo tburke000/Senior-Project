@@ -59,6 +59,6 @@ public class Launcher {
     }
 
     public static void start(Game game) {
-
+        game.start();
     }
 }
