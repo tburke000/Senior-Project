@@ -1,7 +1,4 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.io.File;
 
 /**
  * Class representing a game board.
@@ -10,11 +7,11 @@ public class Board {
     public Square[][] board;
     public ImageIcon boardDisplay;
     private String type;
-    public JFrame jf;
+    public JFrame gameWindow;
     public Board (String type) {
         this.board = new Square[8][8];
         this.type = type;
-        this.jf = new JFrame();
+        this.gameWindow = new JFrame();
         Square square;
         for (int row = 0; row < 8; row++) {
             for (int column = 0; column < 8; column++) {
@@ -22,6 +19,8 @@ public class Board {
                 board[row][column] = square;
             }
         }
+        gameWindow.setLayout(null);
+
     }
     protected ImageIcon createImageIcon(String path,
                                         String description) {
@@ -40,18 +39,17 @@ public class Board {
             System.out.print("Error finding image");
         }
 
-        jf.setSize(1920, 1080);
+        gameWindow.setSize(1920, 1080);
         JPanel panel = new JPanel();
 
 
 
         JLabel background = new JLabel(boardDisplay, JLabel.CENTER);
-        //jf.pack();
-        jf.add(background);
-        jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        jf.setUndecorated(true);
-        jf.setVisible(true);
+        gameWindow.add(background);
+        gameWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        gameWindow.setUndecorated(true);
+        gameWindow.setVisible(true);
 
 
     }

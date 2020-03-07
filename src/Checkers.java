@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.util.LinkedList;
 
 public class Checkers extends Game {
@@ -58,28 +57,23 @@ public class Checkers extends Game {
             }
             pieces.add(piece);
         }
-
-
-
     }
 
     @Override
     public void display() {
         //Add background,buttons, pieces, and other images to frame
 
-        board.display();
-
         for (Piece i: pieces) {
-            PiecePanel dontAbbreviateThat = new PiecePanel(i.getImage());
-            board.jf.add(dontAbbreviateThat);
+            PiecePanel dontAbbreviateThat = new PiecePanel(i);
+
+            board.gameWindow.add(dontAbbreviateThat);
+
         }
         //gameWindow.setContentPane(insertBackground());
-        //savebutton();
-       // deletePicture();
-     //   printDoodads();
-
-
-
+        //savebutton();p
+        // deletePicture();
+        //   printDoodads();
+        board.display();
     }
 
     @Override

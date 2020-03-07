@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.LinkedList;
 
 public class Chess extends Game {
@@ -18,8 +19,9 @@ public class Chess extends Game {
         board.display();
 
         for (Piece i: pieces) {
-            PiecePanel dontAbbreviateThat = new PiecePanel(i.getImage());
-            board.jf.add(dontAbbreviateThat);
+            PiecePanel dontAbbreviateThat = new PiecePanel(i);
+            dontAbbreviateThat.setBackground(Color.getColor("blue"));
+            board.gameWindow.add(dontAbbreviateThat);
         }
     }
 
