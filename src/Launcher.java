@@ -34,7 +34,7 @@ public class Launcher {
         frame.setLayout((new GridBagLayout()));
         JPanel panel = new JPanel();
         JPanel titlePanel = new JPanel();
-        JLabel title = new JLabel("Knight's Party Table II");
+        JLabel title = new JLabel("Knight's Party Table II", SwingConstants.CENTER);
         titlePanel.setLayout(new BorderLayout());
         frame.setUndecorated(true);
         MenuListener li = new MenuListener();

@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.LinkedList;
 
 public class Checkers extends Game {
@@ -12,6 +14,7 @@ public class Checkers extends Game {
         // Fill the list of pieces
         fillCheckers();
     }
+
     @Override
     public void start() {
         display();
@@ -20,16 +23,19 @@ public class Checkers extends Game {
     private void fillCheckers () {
         int row = 0;
         int column = 0;
-
+        int xPos = 0;
+        int yPos = 0;
         // The first twelve are Player One's, and red
         for (int i = 0; i < nCheckers/2; i++) {
-            Piece piece = new Piece(0, 0, true, "checker");
+            Piece piece = new Piece(xPos, yPos, true, "checker");
             piece.setPosition(row, column);
             if ((column <= 5) && ((row%2 == 0))) {
+                xPos+=120;
                 column+=2;
             } else if ((row%2==0)) {
                 row++;
                 column=1;
+                // TODO Assign pixel value to the X and Y locations of the piece, and figure out why only the last piece appears
             } else if ((column <=5) && (row%2!=0)) {
                 column+=2;
             } else {
@@ -40,6 +46,8 @@ public class Checkers extends Game {
         }
         row = 7;
         column = 0;
+        xPos = 0;
+        yPos = 0;
         // The last twelve are Player Two's, and black
         for (int i = 12; i < nCheckers; i++) {
             Piece piece = new Piece(0, 0, false, "checker");
@@ -62,18 +70,21 @@ public class Checkers extends Game {
     @Override
     public void display() {
         //Add background,buttons, pieces, and other images to frame
-
+        board.display();
+        int count = 1;
         for (Piece i: pieces) {
-            PiecePanel dontAbbreviateThat = new PiecePanel(i);
+            PiecePanel visual = new PiecePanel(i);
 
-            board.gameWindow.add(dontAbbreviateThat);
+            board.gameWindow.add(visual);
+
 
         }
         //gameWindow.setContentPane(insertBackground());
         //savebutton();p
         // deletePicture();
         //   printDoodads();
-        board.display();
+
+
     }
 
     @Override
