@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
+import java.util.concurrent.Flow;
 
 /**
  * A panel used to represent a piece on the game board. I'm probably waaaay overcomplicating things
@@ -26,7 +27,6 @@ public class PiecePanel extends JComponent implements ImageObserver {
 
     protected void paintComponent(Graphics g) {
         Graphics2D graphic = (Graphics2D) g;
-        graphic.clearRect(0, 0, 80, 80);
         if (_image != null) {
             graphic.drawImage(_image, 0, 0, 80, 80, this);
         }
@@ -49,6 +49,7 @@ public class PiecePanel extends JComponent implements ImageObserver {
                 Point parentOnScreen = getParent().getLocationOnScreen();
                 Point mouseOnScreen = e.getLocationOnScreen();
                 Point position = new Point(mouseOnScreen.x - parentOnScreen.x - anchorX, mouseOnScreen.y - parentOnScreen.y - anchorY);
+
                 setLocation(position);
 
                 if (overbearing) {
@@ -57,7 +58,13 @@ public class PiecePanel extends JComponent implements ImageObserver {
                 }
 
             }
+
         });
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(80, 80);
     }
 
     private void removeDragListeners() {

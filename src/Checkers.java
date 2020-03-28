@@ -25,17 +25,18 @@ public class Checkers extends Game {
         int column = 0;
         int xPos = 0;
         int yPos = 0;
+
         // The first twelve are Player One's, and red
         for (int i = 0; i < nCheckers/2; i++) {
+            xPos = 420 + (column*80);
+            yPos = row * 80;
             Piece piece = new Piece(xPos, yPos, true, "checker");
             piece.setPosition(row, column);
             if ((column <= 5) && ((row%2 == 0))) {
-                xPos+=120;
                 column+=2;
             } else if ((row%2==0)) {
                 row++;
                 column=1;
-                // TODO Assign pixel value to the X and Y locations of the piece, and figure out why only the last piece appears
             } else if ((column <=5) && (row%2!=0)) {
                 column+=2;
             } else {
@@ -46,11 +47,12 @@ public class Checkers extends Game {
         }
         row = 7;
         column = 0;
-        xPos = 0;
-        yPos = 0;
+
         // The last twelve are Player Two's, and black
         for (int i = 12; i < nCheckers; i++) {
-            Piece piece = new Piece(0, 0, false, "checker");
+            xPos = 420 + (column*80);
+            yPos = row * 80;
+            Piece piece = new Piece(xPos, yPos, false, "checker");
             piece.setPosition(row, column);
             if ((column <= 5) && ((row%2 != 0))) {
                 column+=2;
@@ -71,15 +73,16 @@ public class Checkers extends Game {
     public void display() {
         //Add background,buttons, pieces, and other images to frame
         board.display();
-        int count = 1;
+
         for (Piece i: pieces) {
             PiecePanel visual = new PiecePanel(i);
-
+            visual.setLocation(i.getxAxis(), i.getyAxis());
             board.gameWindow.add(visual);
-
+            board.gameWindow.revalidate();
+            board.gameWindow.repaint();
 
         }
-        //gameWindow.setContentPane(insertBackground());
+
         //savebutton();p
         // deletePicture();
         //   printDoodads();

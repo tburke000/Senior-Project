@@ -4,6 +4,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.concurrent.Flow;
 
 import static javax.swing.BoxLayout.Y_AXIS;
 
@@ -50,20 +51,16 @@ public class Board {
         }
     }
     public void display() {
-
-        disp.setLayout(new BoxLayout(disp.getContentPane(), Y_AXIS));
         disp.setSize(1920, 1080);
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         disp.setUndecorated(true);
 
-        gameWindow.setLayout(new GridLayout(8,8));
-        //gameWindow.setPreferredSize(new Dimension(1080, 1080));
+        gameWindow.setLayout(new BorderLayout());
+        gameWindow.setBounds(420, 0, 1080, 1080);
+        gameWindow.setPreferredSize(new Dimension(1080, 1080));
         gameWindow.setBorder(new EmptyBorder(0, 420, 0, 420));
-        //gameWindow.setBackground(new Color(255, 255, 255, 0));
 
-
-
-        disp.add(gameWindow);
+        disp.getContentPane().add(gameWindow);
         disp.setVisible(true);
 
     }
@@ -78,7 +75,7 @@ class BoardPanel extends JPanel {
 
     protected void paintComponent(Graphics g) {
         Graphics2D graphic = (Graphics2D) g;
-        graphic.clearRect(0, 0, 80, 80);
+        graphic.clearRect(420, 0, 1080, 1080);
         if (board != null) {
             graphic.drawImage(board.getImage(), 420, 0, 1080, 1080, this);
         }

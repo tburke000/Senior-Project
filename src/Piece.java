@@ -22,7 +22,7 @@ public class Piece {
     private int xAxis, yAxis;
 
     public Piece (int xAxis, int yAxis, boolean owner, String type) {
-        System.out.println("Spinning up piece");
+        System.out.println("Spinning up piece at " + xAxis + ", " + yAxis);
         this.owner = owner;
         this.type = type;
         this.pos = new Square(0, 0); // Default position at 0,0
