@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
 
+/**
+ * Represents a game of Checkers playable using the Knight's Party Table
+ * @author burke
+ */
 public class Checkers extends Game {
 
     public LinkedList<Piece> pieces;

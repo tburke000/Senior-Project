@@ -1,5 +1,6 @@
 /**
  * Represents a square on a checkerboard
+ * @author burke
  */
 public class Square {
     public int row;
@@ -24,5 +25,14 @@ public class Square {
     public void setPos (int row, int column) {
         this.row = row;
         this.column = column;
+    }
+
+    /**
+     * Returns the location of the square in pixels.
+     * @return
+     */
+    public int[] getPixel () {
+        int[] pixelPos = {420 + row * 80, column * 80};
+        return pixelPos;
     }
 }

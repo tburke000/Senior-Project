@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 /**
  * A class representing a piece in a board game. Used for Chess, Checkers, and maybe Battleship
+ * @author burke
  */
 public class Piece {
     // Boolean representing who owns the piece. True for Player One, False for Player Two.

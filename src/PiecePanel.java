@@ -9,6 +9,7 @@ import java.util.concurrent.Flow;
 
 /**
  * A panel used to represent a piece on the game board. I'm probably waaaay overcomplicating things
+ * @author burke
  */
 public class PiecePanel extends JComponent implements ImageObserver {
     private Image _image;
@@ -48,7 +49,10 @@ public class PiecePanel extends JComponent implements ImageObserver {
 
                 Point parentOnScreen = getParent().getLocationOnScreen();
                 Point mouseOnScreen = e.getLocationOnScreen();
-                Point position = new Point(mouseOnScreen.x - parentOnScreen.x - anchorX, mouseOnScreen.y - parentOnScreen.y - anchorY);
+                int possibleX = mouseOnScreen.x - parentOnScreen.x - anchorX;
+                int possibleY = mouseOnScreen.y - parentOnScreen.y - anchorY;
+
+                Point position = new Point(possibleX, possibleY);
 
                 setLocation(position);
 

@@ -3,6 +3,10 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import javax.swing.event.MouseInputAdapter;
 
+/**
+ * Class used to represent a listener for objects throughout hte system.
+ * @author burke
+ */
 public class DragListener extends MouseInputAdapter {
     Point location;
     MouseEvent pressed;

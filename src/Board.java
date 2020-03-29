@@ -9,7 +9,8 @@ import java.util.concurrent.Flow;
 import static javax.swing.BoxLayout.Y_AXIS;
 
 /**
- * Class representing a game board.
+ * Class representing a game board programmatically
+ * @author burke
  */
 public class Board {
     public Square[][] board;
@@ -55,18 +56,22 @@ public class Board {
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         disp.setUndecorated(true);
 
-        gameWindow.setLayout(new BorderLayout());
-        gameWindow.setBounds(420, 0, 1080, 1080);
+        gameWindow.setLayout(new SpringLayout());
+//        gameWindow.setBounds(420, 0, 1080, 1080);
         gameWindow.setPreferredSize(new Dimension(1080, 1080));
         gameWindow.setBorder(new EmptyBorder(0, 420, 0, 420));
 
-        disp.getContentPane().add(gameWindow);
+        disp.add(gameWindow);
         disp.setVisible(true);
 
     }
 
 }
 
+/**
+ * Class representing a game board graphically
+ * @author burke
+ */
 class BoardPanel extends JPanel {
     private ImageIcon board;
     public BoardPanel (ImageIcon board) {
