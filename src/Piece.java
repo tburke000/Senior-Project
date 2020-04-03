@@ -25,7 +25,7 @@ public class Piece {
     public Piece (int xAxis, int yAxis, boolean owner, String type) {
         System.out.println("Spinning up piece at " + xAxis + ", " + yAxis);
         this.owner = owner;
-        this.type = type;
+        setType(type);
         this.pos = new Square(0, 0); // Default position at 0,0
         try {
             switch (type) {
@@ -37,20 +37,92 @@ public class Piece {
                         this.image = ImageIO.read(new File("src/BlackChecker.png"));
                         System.out.println("Image Found: Black Checker");
                     }
+                    break;
+                case "rook":
+                    if (owner) {
+                        this.image = ImageIO.read(new File("src/WhiteRook.png"));
+                        System.out.println("Image Found: White Rook");
+                    } else {
+                        this.image = ImageIO.read(new File("src/BlackRook.png"));
+                        System.out.println("Image Found: Black Rook");
+                    }
+                    break;
+                case "knight":
+                    if (owner) {
+                        this.image = ImageIO.read(new File("src/WhiteKnight.png"));
+                        System.out.println("Image Found: White Knight");
+                    } else {
+                        this.image = ImageIO.read(new File("src/BlackKnight.png"));
+                        System.out.println("Image Found: Black Knight");
+                    }
+                    break;
+                case "bishop":
+                    if (owner) {
+                        this.image = ImageIO.read(new File("src/WhiteBishop.png"));
+                        System.out.println("Image Found: White Bishop");
+                    } else {
+                        this.image = ImageIO.read(new File("src/BlackBishop.png"));
+                        System.out.println("Image Found: Black Bishop");
+                    }
+                    break;
+                case "queen":
+                    if (owner) {
+                        this.image = ImageIO.read(new File("src/WhiteQueen.png"));
+                        System.out.println("Image Found: White Queen");
+                    } else {
+                        this.image = ImageIO.read(new File("src/BlackQueen.png"));
+                        System.out.println("Image Found: Black Queen");
+                    }
+                    break;
+                case "king":
+                    if (owner) {
+                        this.image = ImageIO.read(new File("src/WhiteKingChess.png"));
+                        System.out.println("Image Found: White King");
+                    } else {
+                        this.image = ImageIO.read(new File("src/BlackKingChess.png"));
+                        System.out.println("Image Found: Black King");
+                    }
+                    break;
+                case "pawn":
+                    if (owner) {
+                        this.image = ImageIO.read(new File("src/WhitePawn.png"));
+                        System.out.println("Image Found: White Pawn");
+                    } else {
+                        this.image = ImageIO.read(new File("src/BlackPawn.png"));
+                        System.out.println("Image Found: Black Pawn");
+                    }
+                    break;
+                case "carrier":
+                    this.image = ImageIO.read(new File("src/Carrier.png"));
+                    System.out.println("Image Found: Carrier");
+                    break;
+                case "battleship":
+                    this.image = ImageIO.read(new File("src/BattleshipV.png"));
+                    System.out.println("Image Found: Battleship");
+                    break;
+                case "destroyer":
+                    this.image = ImageIO.read(new File("src/DestroyerH.png"));
+                    System.out.println("Image Found: Destroyer");
+                    break;
+                case "cruiser":
+                    this.image = ImageIO.read(new File("src/CruiserV.png"));
+                    System.out.println("Image Found: Cruiser");
+                    break;
+                case "submarine":
+                    this.image = ImageIO.read(new File("src/SubmarineH.png"));
+                    System.out.println("Image Found: Submarine");
             }
         } catch (Exception e) {
-            System.out.print("Error finding image");
-            System.out.println(e);
+            System.out.println(e + ": Error finding image");
         }
 
         this.xAxis = xAxis;
         this.yAxis = yAxis;
 
-
     }
 
-    public void setType (String type) {
-        this.type = type;
+    public void setType (String _type) {
+        type = _type;
     }
 
     public void setPosition (int row, int column) {

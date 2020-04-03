@@ -27,8 +27,8 @@ public class Checkers extends Game {
     private void fillCheckers () {
         int row = 0;
         int column = 0;
-        int xPos = 0;
-        int yPos = 0;
+        int xPos;
+        int yPos;
 
         // The first twelve are Player One's, and red
         for (int i = 0; i < nCheckers/2; i++) {

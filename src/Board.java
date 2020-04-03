@@ -55,8 +55,9 @@ public class Board {
         disp.setSize(1920, 1080);
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         disp.setUndecorated(true);
+        SpringLayout boardLayout = new SpringLayout();
 
-        gameWindow.setLayout(new SpringLayout());
+        gameWindow.setLayout(boardLayout);
 //        gameWindow.setBounds(420, 0, 1080, 1080);
         gameWindow.setPreferredSize(new Dimension(1080, 1080));
         gameWindow.setBorder(new EmptyBorder(0, 420, 0, 420));

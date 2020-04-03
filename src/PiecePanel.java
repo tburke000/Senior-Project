@@ -24,6 +24,7 @@ public class PiecePanel extends JComponent implements ImageObserver {
         addDragListeners();
         _image = piece.getImage();
         _piece = piece;
+        setBackground(new Color(0,0,0,150));
     }
 
     protected void paintComponent(Graphics g) {

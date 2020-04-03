@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
 
 /**
  * After a frustrating combined three hours, I've decided to completely start fresh.
@@ -14,8 +13,8 @@ public class Launcher {
     //static
     static JButton chekkers = new JButton("Checkers");
     static JButton chess = new JButton("Chess");
-    static JButton navalWarfare = new JButton("Naval Warfare");
-    //static JButton load = new JButton("Load");
+    static JButton battleship = new JButton("Battleship");
+
     static JButton sd = new JButton("Shut Down");
 
     public static JFrame jf = dispMenu();
@@ -41,12 +40,12 @@ public class Launcher {
 
         chekkers.addActionListener(li);
         chess.addActionListener(li);
-        navalWarfare.addActionListener(li);
+        battleship.addActionListener(li);
         sd.addActionListener(li);
 
         panel.add(chekkers);
         panel.add(chess);
-        panel.add(navalWarfare);
+        panel.add(battleship);
         panel.add(sd);
 
         titlePanel.add(title, BorderLayout.NORTH);

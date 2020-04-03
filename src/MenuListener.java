@@ -1,15 +1,10 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.ListSelectionModel;
 
 public class MenuListener implements ActionListener {
 
@@ -28,8 +23,9 @@ public class MenuListener implements ActionListener {
                 Launcher.jf.dispose();
 
         }
-        else if(source == Launcher.navalWarfare)
+        else if(source == Launcher.battleship)
         {
+                Launcher.start(new Battleship());
                 Launcher.jf.dispose();
 
         }
