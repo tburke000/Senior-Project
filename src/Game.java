@@ -23,7 +23,7 @@ public abstract class Game {
      * Moves the given piece
      * @param piece The given piece
      */
-    public abstract void movePiece(Piece piece);
+    public abstract boolean movePiece(Piece piece, int xPos, int yPos);
 
     /**
      *  Removes the takee piece from the board and replaces it with the taker

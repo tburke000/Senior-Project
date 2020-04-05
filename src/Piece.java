@@ -142,8 +142,8 @@ public class Piece {
      * Returns the position the piece currently resides on as an int array
      * @return And int array returning the current position of the piece
      */
-    public int[] getPosition () {
-        return this.pos.getPos();
+    public Square getPosition () {
+        return this.pos;
     }
         //getters and setters
         public int getxAxis() {

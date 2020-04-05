@@ -124,8 +124,8 @@ public class Chess extends Game {
     }
 
     @Override
-    public void movePiece(Piece piece) {
-
+    public boolean movePiece(Piece piece, int xPos, int yPos) {
+        return true;
     }
 
     @Override

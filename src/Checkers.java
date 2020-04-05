@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Represents a game of Checkers playable using the Knight's Party Table
@@ -96,8 +97,27 @@ public class Checkers extends Game {
     }
 
     @Override
-    public void movePiece(Piece piece) {
+    public boolean movePiece(Piece piece, int xPos, int yPos) {
+        Square position = piece.getPosition();
+        LinkedList<Square> possibleMoves = new LinkedList<>();
 
+        if ((position.row++ <= 7) && (position.column++ <= 7)) {
+            possibleMoves.add(new Square(position.row++,position.column++));
+        } else if ((position.row-- >= 0) && (position.column-- >= 0)) {
+            possibleMoves.add(new Square(position.row--,position.column--));
+        } else if ((position.row -- >= 0) && (position.column++ <= 7)) {
+            possibleMoves.add(new Square(position.row++,position.column++));
+        } else if ((position.row ++ <= 7) && (position.column-- >= 0)) {
+            possibleMoves.add(new Square(position.row++,position.column--));
+        }
+
+        for (Square i: possibleMoves) {
+            // This checks to see if the piece is in the horizontal and vertical bounds of a square in an immensely convoluted manner.
+            if ((xPos >= i.getPixel()[0] && xPos <= i.getPixel()[0]+80) && (yPos >= i.getPixel()[1] && yPos <= i.getPixel()[1]+80)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

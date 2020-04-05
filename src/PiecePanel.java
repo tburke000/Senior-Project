@@ -22,7 +22,6 @@ public class PiecePanel extends JComponent implements ImageObserver {
         addDragListeners();
         _image = piece.getImage();
         _piece = piece;
-        setBackground(new Color(0,0,0,150));
     }
 
     protected void paintComponent(Graphics g) {
@@ -36,9 +35,6 @@ public class PiecePanel extends JComponent implements ImageObserver {
                     case "battleship":
                         graphic.drawImage(_image, 0, 0, 80, 320, this);
                         break;
-//                    case "submarine":
-//                        graphic.drawImage(_image, 0, 0, 240, 80, this);
-//                        break;
                     case "cruiser":
                         graphic.drawImage(_image, 0, 0, 80, 240, this);
                         break;
@@ -72,6 +68,7 @@ public class PiecePanel extends JComponent implements ImageObserver {
 
                 Point position = new Point(possibleX, possibleY);
 
+
                 setLocation(position);
 
                 if (overbearing) {
@@ -92,8 +89,6 @@ public class PiecePanel extends JComponent implements ImageObserver {
                     return new Dimension(400, 80);
                 case "battleship":
                     return new Dimension(80, 320);
-//                case "submarine":
-//                    return new Dimension(160, 80);
                 case "cruiser":
                     return new Dimension(80, 240);
                 default:
