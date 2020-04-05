@@ -109,8 +109,14 @@ public class Piece {
                     System.out.println("Image Found: Cruiser");
                     break;
                 case "submarine":
-                    this.image = ImageIO.read(new File("src/SubmarineH.png"));
+                    this.image = ImageIO.read(new File("src/SubH.png"));
                     System.out.println("Image Found: Submarine");
+                case "redpeg":
+                    this.image = ImageIO.read(new File("src/RedPeg.png"));
+                    System.out.println("Image Found: Red Peg");
+                case "whitepeg":
+                    this.image = ImageIO.read(new File("src/WhitePeg.png"));
+                    System.out.println("Image Found: White Peg");
             }
         } catch (Exception e) {
             System.out.println(e + ": Error finding image");
@@ -121,10 +127,13 @@ public class Piece {
 
     }
 
-    public void setType (String _type) {
-        type = _type;
+    public void setType (String type) {
+        this.type = type;
     }
 
+    public String getType () {
+        return type;
+    }
     public void setPosition (int row, int column) {
         this.pos.setPos(row, column);
     }

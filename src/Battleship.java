@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -7,15 +8,16 @@ import java.util.LinkedList;
  */
 public class Battleship extends Game {
     private LinkedList<Piece> pieces;
-    private String[] ships;
+    private LinkedList<String> ships;
     private int nShips = 10;
     private int nRedPegs = 26;
     private int nWhitePegs = 50;
     Board board = new Board("battleship");
 
     public Battleship () {
+        this.pieces = new LinkedList<>();
+        this.ships = new LinkedList<>(Arrays.asList("carrier", "battleship", "cruiser", "submarine", "destroyer"));
         fillShips();
-        this.ships  = new String[]{"carrier", "battleship", "cruiser", "submarine", "destroyer"};
     }
 
     @Override
@@ -44,7 +46,25 @@ public class Battleship extends Game {
             pieces.add(piece);
         }
 
+        for (int i = 0; i < nRedPegs; i++) {
+            if (i < nRedPegs/2) {
+                Piece peg = new Piece(0, 0, true, "redpeg");
+                pieces.add(peg);
+            } else {
+                Piece peg = new Piece(0, 0, false, "redpeg");
+                pieces.add(peg);
+            }
+        }
 
+        for (int i = 0; i < nWhitePegs; i++) {
+            if (i < nWhitePegs/2) {
+                Piece peg = new Piece(0, 0, true, "whitepeg");
+                pieces.add(peg);
+            } else {
+                Piece peg = new Piece(0, 0, false, "whitepeg");
+                pieces.add(peg);
+            }
+        }
     }
 
     @Override

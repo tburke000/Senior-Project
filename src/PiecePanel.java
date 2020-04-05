@@ -3,9 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
-import java.util.concurrent.Flow;
 
 /**
  * A panel used to represent a piece on the game board. I'm probably waaaay overcomplicating things
@@ -30,7 +28,26 @@ public class PiecePanel extends JComponent implements ImageObserver {
     protected void paintComponent(Graphics g) {
         Graphics2D graphic = (Graphics2D) g;
         if (_image != null) {
-            graphic.drawImage(_image, 0, 0, 80, 80, this);
+            if (isShip(_piece)) {
+                switch (_piece.getType()){
+                    case "carrier":
+                        graphic.drawImage(_image, 0, 0, 400, 80, this);
+                        break;
+                    case "battleship":
+                        graphic.drawImage(_image, 0, 0, 80, 320, this);
+                        break;
+//                    case "submarine":
+//                        graphic.drawImage(_image, 0, 0, 240, 80, this);
+//                        break;
+                    case "cruiser":
+                        graphic.drawImage(_image, 0, 0, 80, 240, this);
+                        break;
+                    default:
+                        graphic.drawImage(_image, 0, 0, 240, 80, this);
+                }
+            } else {
+                graphic.drawImage(_image, 0, 0, 80, 80, this);
+            }
         }
     }
 
@@ -69,7 +86,22 @@ public class PiecePanel extends JComponent implements ImageObserver {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(80, 80);
+        if (isShip(_piece)) {
+            switch (_piece.getType()){
+                case "carrier":
+                    return new Dimension(400, 80);
+                case "battleship":
+                    return new Dimension(80, 320);
+//                case "submarine":
+//                    return new Dimension(160, 80);
+                case "cruiser":
+                    return new Dimension(80, 240);
+                default:
+                    return new Dimension(240, 80);
+            }
+        } else {
+            return new Dimension(80, 80);
+        }
     }
 
     private void removeDragListeners() {
@@ -78,4 +110,19 @@ public class PiecePanel extends JComponent implements ImageObserver {
         }
         setCursor(Cursor.getDefaultCursor());
     }
+
+    /**
+     * Pretty standard, determines if a piece is a ship for Battleship. Mostly to keep above code cleaner.
+     * @param _piece
+     * @return
+     */
+    private boolean isShip(Piece _piece) {
+        if (_piece.getType().equals("carrier") || _piece.getType().equals("battleship") || _piece.getType().equals("destroyer") || _piece.getType().equals("cruiser") || _piece.getType().equals("submarine")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
+
