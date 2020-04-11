@@ -139,8 +139,8 @@ public class Piece {
     }
 
     /**
-     * Returns the position the piece currently resides on as an int array
-     * @return And int array returning the current position of the piece
+     * Returns the position the piece currently resides on as a Square
+     * @return A Square containing the current row and column of the piece
      */
     public Square getPosition () {
         return this.pos;

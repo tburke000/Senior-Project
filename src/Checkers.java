@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,7 +21,53 @@ public class Checkers extends Game {
     public Checkers () {
         this.pieces = new LinkedList<>();
         // Fill the list of pieces
+        board.gameWindow.setFocusable(true);
         fillCheckers();
+        board.gameWindow.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    JFrame pauseMenu = new JFrame();
+                    pauseMenu.setLayout(new GridBagLayout());
+                    pauseMenu.setSize(400, 600);
+
+                    GridBagConstraints gbc = new GridBagConstraints();
+                    gbc.gridwidth = GridBagConstraints.REMAINDER;
+                    gbc.fill = GridBagConstraints.HORIZONTAL;
+
+
+                    JLabel label = new JLabel("PAUSE");
+                    JButton returnMenu = new JButton("Return to Launcher");
+                    returnMenu.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            board.disp.dispose();
+                            JFrame launcher = Launcher.dispMenu();
+                            launcher.setSize(400, 600);
+                            launcher.setLocationRelativeTo(null);
+                            launcher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            launcher.setVisible(true);
+                        }
+                    });
+                    pauseMenu.add(label, gbc);
+                    pauseMenu.add(returnMenu, gbc);
+                    pauseMenu.setUndecorated(true);
+                    pauseMenu.setVisible(true);
+
+
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
     }
 
     @Override
@@ -81,9 +131,14 @@ public class Checkers extends Game {
 
         for (Piece i: pieces) {
             PiecePanel visual = new PiecePanel(i);
+//            board.gameWindow.setLayout(new GridBagLayout());
+//            GridBagConstraints gbc = new GridBagConstraints();
+//            gbc.gridwidth = GridBagConstraints.REMAINDER;
+//            gbc.fill = GridBagConstraints.HORIZONTAL;
+
+            board.gameWindow.add(visual);
             visual.setLocation(i.getxAxis(), i.getyAxis());
             System.out.println(i.getxAxis() + ", " + i.getyAxis());
-            board.gameWindow.add(visual);
             board.gameWindow.revalidate();
             board.gameWindow.repaint();
 
@@ -98,26 +153,31 @@ public class Checkers extends Game {
 
     @Override
     public boolean movePiece(Piece piece, int xPos, int yPos) {
-        Square position = piece.getPosition();
-        LinkedList<Square> possibleMoves = new LinkedList<>();
-
-        if ((position.row++ <= 7) && (position.column++ <= 7)) {
-            possibleMoves.add(new Square(position.row++,position.column++));
-        } else if ((position.row-- >= 0) && (position.column-- >= 0)) {
-            possibleMoves.add(new Square(position.row--,position.column--));
-        } else if ((position.row -- >= 0) && (position.column++ <= 7)) {
-            possibleMoves.add(new Square(position.row++,position.column++));
-        } else if ((position.row ++ <= 7) && (position.column-- >= 0)) {
-            possibleMoves.add(new Square(position.row++,position.column--));
-        }
-
-        for (Square i: possibleMoves) {
-            // This checks to see if the piece is in the horizontal and vertical bounds of a square in an immensely convoluted manner.
-            if ((xPos >= i.getPixel()[0] && xPos <= i.getPixel()[0]+80) && (yPos >= i.getPixel()[1] && yPos <= i.getPixel()[1]+80)) {
-                return true;
-            }
-        }
         return false;
+    }
+
+    public static boolean move(Piece piece, int xPos, int yPos) {
+        return true;
+//        Square position = piece.getPosition();
+//        LinkedList<Square> possibleMoves = new LinkedList<>();
+//
+//        if ((position.row++ <= 7) && (position.column++ <= 7)) {
+//            possibleMoves.add(new Square(position.row++,position.column++));
+//        } else if ((position.row-- >= 0) && (position.column-- >= 0)) {
+//            possibleMoves.add(new Square(position.row--,position.column--));
+//        } else if ((position.row -- >= 0) && (position.column++ <= 7)) {
+//            possibleMoves.add(new Square(position.row++,position.column++));
+//        } else if ((position.row ++ <= 7) && (position.column-- >= 0)) {
+//            possibleMoves.add(new Square(position.row++,position.column--));
+//        }
+//
+//        for (Square i: possibleMoves) {
+//            // This checks to see if the piece is in the horizontal and vertical bounds of a square in an immensely convoluted manner.
+//            if ((xPos >= i.getPixel()[0] && xPos <= i.getPixel()[0]+80) && (yPos >= i.getPixel()[1] && yPos <= i.getPixel()[1]+80)) {
+//                return true;
+//            }
+//        }
+//        return false;
     }
 
     @Override

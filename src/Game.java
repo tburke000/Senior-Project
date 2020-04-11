@@ -38,9 +38,5 @@ public abstract class Game {
      */
     public abstract void win (Boolean player);
 
-    //Get image file for game board background and convert it to a JLabel
-    /*public static JLabel insertBackground() throws IOException {
-
-    }*/
 }
 

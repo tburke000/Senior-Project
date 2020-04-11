@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
@@ -32,21 +33,29 @@ public class Launcher {
         JFrame frame = new JFrame();
         frame.setLayout((new GridBagLayout()));
         JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+
         JPanel titlePanel = new JPanel();
         JLabel title = new JLabel("Knight's Party Table II", SwingConstants.CENTER);
+        title.setFont(title.getFont().deriveFont(18.0f));
         titlePanel.setLayout(new BorderLayout());
         frame.setUndecorated(true);
         MenuListener li = new MenuListener();
+        panel.setBorder(new EmptyBorder(15,15,15,15));
 
         chekkers.addActionListener(li);
         chess.addActionListener(li);
         battleship.addActionListener(li);
         sd.addActionListener(li);
 
-        panel.add(chekkers);
-        panel.add(chess);
-        panel.add(battleship);
-        panel.add(sd);
+        panel.add(chekkers, gbc);
+        panel.add(chess, gbc);
+        panel.add(battleship, gbc);
+        panel.add(sd, gbc);
 
         titlePanel.add(title, BorderLayout.NORTH);
         titlePanel.add(panel, BorderLayout.CENTER);

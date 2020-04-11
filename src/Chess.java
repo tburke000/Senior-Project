@@ -1,6 +1,10 @@
 import java.awt.*;
 import java.util.LinkedList;
 
+/**
+ * Class representing the board game Chess playable using the Knight's Party Table
+ * @author burke
+ */
 public class Chess extends Game {
     public LinkedList<Piece> pieces;
     public String name = "Chess";

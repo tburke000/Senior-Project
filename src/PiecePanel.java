@@ -14,14 +14,16 @@ public class PiecePanel extends JComponent implements ImageObserver {
     private Piece _piece;
     // Necessities for draggable component
     private Boolean draggable = true;
+    protected Point initialPoint;
     protected Point anchorPoint;
     protected Cursor draggingCursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     protected Boolean overbearing = true;
 
     public PiecePanel (Piece piece) {
-        addDragListeners();
         _image = piece.getImage();
         _piece = piece;
+        initialPoint = new Point(piece.getxAxis(), piece.getyAxis());
+        addDragListeners();
     }
 
     protected void paintComponent(Graphics g) {
