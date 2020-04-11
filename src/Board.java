@@ -56,7 +56,6 @@ public class Board {
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         disp.setUndecorated(true);
 
-//        gameWindow.setBounds(420, 0, 1080, 1080);
         gameWindow.setPreferredSize(new Dimension(1080, 1080));
         gameWindow.setBorder(new EmptyBorder(0, 420, 0, 420));
 

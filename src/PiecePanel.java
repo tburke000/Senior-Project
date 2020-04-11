@@ -69,17 +69,28 @@ public class PiecePanel extends JComponent implements ImageObserver {
                 int possibleY = mouseOnScreen.y - parentOnScreen.y - anchorY;
 
                 Point position = new Point(possibleX, possibleY);
-
-
                 setLocation(position);
 
                 if (overbearing) {
                     getParent().setComponentZOrder(handle, 0);
                     repaint();
                 }
-
             }
 
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                int possibleX = anchorPoint.x;
+                int possibleY = anchorPoint.y;
+
+                switch (_piece.getType()){
+                    case "checkers":
+                        if (Checkers.move(_piece, possibleX, possibleY)) {
+                            Point newPoint = new Point(possibleX, possibleY);
+                            setLocation(newPoint);
+                            initialPoint = newPoint;
+                        }
+                }
+            }
         });
     }
 

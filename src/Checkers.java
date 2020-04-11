@@ -131,13 +131,9 @@ public class Checkers extends Game {
 
         for (Piece i: pieces) {
             PiecePanel visual = new PiecePanel(i);
-//            board.gameWindow.setLayout(new GridBagLayout());
-//            GridBagConstraints gbc = new GridBagConstraints();
-//            gbc.gridwidth = GridBagConstraints.REMAINDER;
-//            gbc.fill = GridBagConstraints.HORIZONTAL;
-
-            board.gameWindow.add(visual);
             visual.setLocation(i.getxAxis(), i.getyAxis());
+            board.gameWindow.add(visual);
+
             System.out.println(i.getxAxis() + ", " + i.getyAxis());
             board.gameWindow.revalidate();
             board.gameWindow.repaint();
@@ -157,27 +153,27 @@ public class Checkers extends Game {
     }
 
     public static boolean move(Piece piece, int xPos, int yPos) {
-        return true;
-//        Square position = piece.getPosition();
-//        LinkedList<Square> possibleMoves = new LinkedList<>();
-//
-//        if ((position.row++ <= 7) && (position.column++ <= 7)) {
-//            possibleMoves.add(new Square(position.row++,position.column++));
-//        } else if ((position.row-- >= 0) && (position.column-- >= 0)) {
-//            possibleMoves.add(new Square(position.row--,position.column--));
-//        } else if ((position.row -- >= 0) && (position.column++ <= 7)) {
-//            possibleMoves.add(new Square(position.row++,position.column++));
-//        } else if ((position.row ++ <= 7) && (position.column-- >= 0)) {
-//            possibleMoves.add(new Square(position.row++,position.column--));
-//        }
-//
-//        for (Square i: possibleMoves) {
-//            // This checks to see if the piece is in the horizontal and vertical bounds of a square in an immensely convoluted manner.
-//            if ((xPos >= i.getPixel()[0] && xPos <= i.getPixel()[0]+80) && (yPos >= i.getPixel()[1] && yPos <= i.getPixel()[1]+80)) {
-//                return true;
-//            }
-//        }
-//        return false;
+
+        Square position = piece.getPosition();
+        LinkedList<Square> possibleMoves = new LinkedList<>();
+
+        if ((position.row++ <= 7) && (position.column++ <= 7)) {
+            possibleMoves.add(new Square(position.row++,position.column++));
+        } else if ((position.row-- >= 0) && (position.column-- >= 0)) {
+            possibleMoves.add(new Square(position.row--,position.column--));
+        } else if ((position.row -- >= 0) && (position.column++ <= 7)) {
+            possibleMoves.add(new Square(position.row++,position.column++));
+        } else if ((position.row ++ <= 7) && (position.column-- >= 0)) {
+            possibleMoves.add(new Square(position.row++,position.column--));
+        }
+
+        for (Square i: possibleMoves) {
+            // This checks to see if the piece is in the horizontal and vertical bounds of a square in an immensely convoluted manner.
+            if ((xPos >= i.getPixel()[0] && xPos <= i.getPixel()[0]+80) && (yPos >= i.getPixel()[1] && yPos <= i.getPixel()[1]+80)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
