@@ -131,13 +131,10 @@ public class Checkers extends Game {
 
         for (Piece i: pieces) {
             PiecePanel visual = new PiecePanel(i);
-            visual.setLocation(i.getxAxis(), i.getyAxis());
+            visual.setLocation(new Point(i.getxAxis(), i.getyAxis()));
+
             board.gameWindow.add(visual);
-
-            System.out.println(i.getxAxis() + ", " + i.getyAxis());
-            board.gameWindow.revalidate();
-            board.gameWindow.repaint();
-
+            System.out.println(visual.getLocation());
         }
 
         //savebutton();p

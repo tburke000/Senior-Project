@@ -128,8 +128,95 @@ public class Chess extends Game {
     }
 
     @Override
+    /**
+     * Buckle up kiddos, this is gonna be a wild ride
+     *
+     * Determines if a piece can be moved to the given position.
+     * @param piece the piece in question
+     * @param xPos the horizontal position in question (represented in pixels)
+     * @param yPos the vertical position in question (represented in pixels)
+     */
     public boolean movePiece(Piece piece, int xPos, int yPos) {
-        return true;
+        // Convert the pixel location to a Square
+        Square possibleSquare = new Square(420+xPos*80, yPos*80);
+        Square currentSquare = piece.getPosition();
+
+        // Keep track of possible moves for the piece
+        LinkedList<Square> possibleMoves = new LinkedList<>();
+
+        // Determine what type of piece it is
+        switch (piece.getType())  {
+            // If it's a pawn, it can only move forward one or two spaces
+            case "pawn":
+                possibleMoves.add(new Square(currentSquare.row, currentSquare.column++));
+                if (currentSquare.row == 1 || currentSquare.row == 7) {
+                    possibleMoves.add(new Square(currentSquare.row, currentSquare.column+2));
+                }
+                break;
+            // If it's a rook, it can only move horizontally and vertically
+            case "rook":
+                for (int i = currentSquare.row; i < 8; i++) {
+                    possibleMoves.add(new Square(i, currentSquare.column));
+                }
+                for (int i = currentSquare.column; i < 8; i++) {
+                    possibleMoves.add(new Square(currentSquare.row, i));
+                }
+                for (int i = currentSquare.row; i >=0; i--) {
+                    possibleMoves.add(new Square(i, currentSquare.column));
+                }
+                for (int i = currentSquare.column; i >= 8; i--) {
+                    possibleMoves.add(new Square(currentSquare.row, i));
+                }
+                break;
+            // If it's a knight, it can only move in an L shape, 3x2 Squares
+            case "knight":
+                // TODO do this one lol
+                break;
+            // If it's a bishop, it's diagonals only
+            case "bishop":
+                for (int i = currentSquare.row; i < 8; i++) {
+                    possibleMoves.add(new Square(currentSquare.row++, currentSquare.column++));
+                    possibleMoves.add(new Square(currentSquare.row++, currentSquare.column--));
+
+                }
+                for (int i = currentSquare.row; i > 8; i--) {
+                    possibleMoves.add(new Square(currentSquare.row--, currentSquare.column++));
+                    possibleMoves.add(new Square(currentSquare.row--, currentSquare.column--));
+                }
+                break;
+            // If it's a king, it can only move one space in any direction
+            case "king":
+                possibleMoves.add(new Square(currentSquare.row++, currentSquare.column));
+                possibleMoves.add(new Square(currentSquare.row--, currentSquare.column));
+                possibleMoves.add(new Square(currentSquare.row, currentSquare.column++));
+                possibleMoves.add(new Square(currentSquare.row, currentSquare.column--));
+                break;
+            // If it's a queen, it can move anywhere
+            case "queen":
+                for (int i = currentSquare.row; i < 8; i++) {
+                    possibleMoves.add(new Square(currentSquare.row++, currentSquare.column++));
+                    possibleMoves.add(new Square(currentSquare.row++, currentSquare.column--));
+                    possibleMoves.add(new Square(currentSquare.row++, currentSquare.column));
+                    possibleMoves.add(new Square(currentSquare.row, currentSquare.column++));
+                }
+                for (int i = currentSquare.row; i >= 0; i--) {
+                    possibleMoves.add(new Square(currentSquare.row--, currentSquare.column++));
+                    possibleMoves.add(new Square(currentSquare.row--, currentSquare.column--));
+                    possibleMoves.add(new Square(currentSquare.row--, currentSquare.column));
+                    possibleMoves.add(new Square(currentSquare.row, currentSquare.column++));
+                }
+                break;
+
+            default:
+                break;
+        }
+        for (Square i: possibleMoves) {
+            // This checks to see if the piece is in the horizontal and vertical bounds of a square in an immensely convoluted manner.
+            if ((xPos >= i.getPixel()[0] && xPos <= i.getPixel()[0]+80) && (yPos >= i.getPixel()[1] && yPos <= i.getPixel()[1]+80)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
