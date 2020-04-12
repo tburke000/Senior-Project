@@ -3,7 +3,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.concurrent.Flow;
 
 import static javax.swing.BoxLayout.Y_AXIS;
@@ -39,6 +41,68 @@ public class Board {
                 board[row][column] = square;
             }
         }
+
+        // Listens if escape is pressed during a game, if so opens the pause menu
+        gameWindow.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    JFrame pauseMenu = new JFrame();
+                    pauseMenu.setLayout(new GridBagLayout());
+                    pauseMenu.setSize(400, 600);
+                    pauseMenu.setLocation(760, 240);
+                    GridBagConstraints gbc = new GridBagConstraints();
+                    gbc.gridwidth = GridBagConstraints.REMAINDER;
+                    gbc.fill = GridBagConstraints.HORIZONTAL;
+
+                    JLabel label = new JLabel("PAUSE");
+                    JButton returnMenu = new JButton("Return to Launcher");
+                    returnMenu.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            disp.dispose();
+                            pauseMenu.dispose();
+
+                            JFrame launcher = Launcher.dispMenu();
+                            launcher.setSize(400, 600);
+                            launcher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            launcher.setSize(1920,1080);
+                            launcher.setUndecorated(true);
+                            launcher.setVisible(true);
+                        }
+                    });
+                    pauseMenu.add(label, gbc);
+                    pauseMenu.add(returnMenu, gbc);
+                    pauseMenu.setFocusable(true);
+                    pauseMenu.setUndecorated(true);
+                    pauseMenu.setVisible(true);
+                    pauseMenu.addKeyListener(new KeyListener() {
+
+                        @Override
+                        public void keyTyped(KeyEvent e) {}
+
+                        @Override
+                        public void keyPressed(KeyEvent e) {
+                            if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                                pauseMenu.dispose();
+                            }
+                        }
+
+                        @Override
+                        public void keyReleased(KeyEvent e) {                        }
+                    });
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {}
+        });
+        gameWindow.setFocusable(true);
     }
 
     protected ImageIcon createImageIcon(String path,

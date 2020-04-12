@@ -21,53 +21,7 @@ public class Checkers extends Game {
     public Checkers () {
         this.pieces = new LinkedList<>();
         // Fill the list of pieces
-        board.gameWindow.setFocusable(true);
         fillCheckers();
-        board.gameWindow.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    JFrame pauseMenu = new JFrame();
-                    pauseMenu.setLayout(new GridBagLayout());
-                    pauseMenu.setSize(400, 600);
-
-                    GridBagConstraints gbc = new GridBagConstraints();
-                    gbc.gridwidth = GridBagConstraints.REMAINDER;
-                    gbc.fill = GridBagConstraints.HORIZONTAL;
-
-
-                    JLabel label = new JLabel("PAUSE");
-                    JButton returnMenu = new JButton("Return to Launcher");
-                    returnMenu.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            board.disp.dispose();
-                            JFrame launcher = Launcher.dispMenu();
-                            launcher.setSize(400, 600);
-                            launcher.setLocationRelativeTo(null);
-                            launcher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                            launcher.setVisible(true);
-                        }
-                    });
-                    pauseMenu.add(label, gbc);
-                    pauseMenu.add(returnMenu, gbc);
-                    pauseMenu.setUndecorated(true);
-                    pauseMenu.setVisible(true);
-
-
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        });
     }
 
     @Override
