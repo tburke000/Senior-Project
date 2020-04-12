@@ -171,6 +171,7 @@ public class Chess extends Game {
             // If it's a knight, it can only move in an L shape, 3x2 Squares
             case "knight":
                 // TODO do this one lol
+
                 break;
             // If it's a bishop, it's diagonals only
             case "bishop":
@@ -226,6 +227,5 @@ public class Chess extends Game {
 
     @Override
     public void win(Boolean player) {
-
     }
 }

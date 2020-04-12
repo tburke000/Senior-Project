@@ -180,6 +180,11 @@ public class Checkers extends Game {
 
     @Override
     public void win(Boolean player) {
-
+        boolean didntWin = false;
+        for (Piece i : pieces) {
+            if (i.getOwner() != player) {
+                didntWin = true;
+            }
+        }
     }
 }

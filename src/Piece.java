@@ -134,6 +134,9 @@ public class Piece {
     public String getType () {
         return type;
     }
+
+    public boolean getOwner (){ return owner; }
+
     public void setPosition (int row, int column) {
         this.pos.setPos(row, column);
     }
