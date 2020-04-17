@@ -38,5 +38,20 @@ public abstract class Game {
      */
     public abstract void win (Boolean player);
 
+    /**
+     * Given a list of possible moves and an x and y position, returns whether or not
+     * it's a viable move.
+     * @return true if the move in question is viable, false if not
+     * @author burke
+     */
+    public static boolean checkMoves (LinkedList<Square> possibleMoves, int xPos, int yPos) {
+        for (Square i: possibleMoves) {
+            // This checks to see if the piece is in the horizontal and vertical bounds of a square in an immensely convoluted manner.
+            if ((xPos >= i.getPixel()[0] && xPos <= i.getPixel()[0]+80) && (yPos >= i.getPixel()[1] && yPos <= i.getPixel()[1]+80)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 

@@ -26,6 +26,10 @@ public class PiecePanel extends JComponent implements ImageObserver {
         addDragListeners();
     }
 
+    /**
+     * Paints the graphic of a piece onto the piece panel
+     * @param g
+     */
     protected void paintComponent(Graphics g) {
         Graphics2D graphic = (Graphics2D) g;
         if (_image != null) {
@@ -49,6 +53,9 @@ public class PiecePanel extends JComponent implements ImageObserver {
         }
     }
 
+    /**
+     * As indicative of the name, adds a drag listener to the panel
+     */
     private void addDragListeners() {
         final PiecePanel handle = this;
         addMouseMotionListener(new MouseAdapter() {
@@ -94,6 +101,10 @@ public class PiecePanel extends JComponent implements ImageObserver {
         });
     }
 
+    /**
+     * Overrides the original getPrefferedSize based on the type of piece that the piece panel will represent.
+     * @return a Dimension of the size of the image.
+     */
     @Override
     public Dimension getPreferredSize() {
         if (isShip(_piece)) {
@@ -112,6 +123,9 @@ public class PiecePanel extends JComponent implements ImageObserver {
         }
     }
 
+    /**
+     * Not used as of yet, but would remove the drag listener from the piece panel
+     */
     private void removeDragListeners() {
         for (MouseMotionListener listener : this.getMouseMotionListeners()) {
             removeMouseMotionListener(listener);
@@ -121,8 +135,8 @@ public class PiecePanel extends JComponent implements ImageObserver {
 
     /**
      * Pretty standard, determines if a piece is a ship for Battleship. Mostly to keep above code cleaner.
-     * @param _piece
-     * @return
+     * @param _piece the piece in question
+     * @return True if the piece is a ship, false if not. Never empty, null, or 0.
      */
     private boolean isShip(Piece _piece) {
         if (_piece.getType().equals("carrier") || _piece.getType().equals("battleship") || _piece.getType().equals("destroyer") || _piece.getType().equals("cruiser") || _piece.getType().equals("submarine")) {

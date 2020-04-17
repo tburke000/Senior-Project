@@ -6,6 +6,9 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * "Legacy code" from Version I
+ */
 public class MenuListener implements ActionListener {
 
     public void actionPerformed(ActionEvent arg0)

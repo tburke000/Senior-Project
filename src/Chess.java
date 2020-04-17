@@ -18,9 +18,9 @@ public class Chess extends Game {
 
     @Override
     public void start() {
-
         display();
     }
+
     private void fillPieces () {
         int row = 0;
         int column = 0;
@@ -97,7 +97,6 @@ public class Chess extends Game {
                 } else if (column == 3) {
                     piece = new Piece(xPos, yPos, false, "queen");
                     piece.setPosition(row, column);
-                    System.out.println("We here");
                     column++;
                 } else if (column == 4) {
                     piece = new Piece(xPos, yPos, false, "king");
@@ -127,7 +126,6 @@ public class Chess extends Game {
         }
     }
 
-    @Override
     /**
      * Buckle up kiddos, this is gonna be a wild ride
      *
@@ -136,6 +134,7 @@ public class Chess extends Game {
      * @param xPos the horizontal position in question (represented in pixels)
      * @param yPos the vertical position in question (represented in pixels)
      */
+    @Override
     public boolean movePiece(Piece piece, int xPos, int yPos) {
         // Convert the pixel location to a Square
         Square possibleSquare = new Square(420+xPos*80, yPos*80);
@@ -211,13 +210,9 @@ public class Chess extends Game {
             default:
                 break;
         }
-        for (Square i: possibleMoves) {
-            // This checks to see if the piece is in the horizontal and vertical bounds of a square in an immensely convoluted manner.
-            if ((xPos >= i.getPixel()[0] && xPos <= i.getPixel()[0]+80) && (yPos >= i.getPixel()[1] && yPos <= i.getPixel()[1]+80)) {
-                return true;
-            }
-        }
-        return false;
+
+        return checkMoves(possibleMoves, xPos, yPos);
+
     }
 
     @Override

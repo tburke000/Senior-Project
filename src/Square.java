@@ -22,6 +22,11 @@ public class Square {
         return new int[]{row, column};
     }
 
+    /**
+     * Sets the position of the Square to the given row and column
+     * @param row an int representing the horizontal position of the square
+     * @param column an int representing the vertical position of the square
+     */
     public void setPos (int row, int column) {
         this.row = row;
         this.column = column;

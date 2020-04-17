@@ -29,6 +29,9 @@ public class Checkers extends Game {
         display();
     }
 
+    /**
+     * Loops through and generates checkers, then adds them to the board.
+     */
     private void fillCheckers () {
         int row = 0;
         int column = 0;
@@ -103,6 +106,14 @@ public class Checkers extends Game {
         return false;
     }
 
+    /**
+     * Method responsible for generating a list of legal moves for a given piece, and returns whether or not the move being
+     * made is of that list.
+     * @param piece The piece being moved
+     * @param xPos The x position the piece is being moved to
+     * @param yPos The y position the piece is being moved to
+     * @return True if the move is legal, false if not
+     */
     public static boolean move(Piece piece, int xPos, int yPos) {
 
         Square position = piece.getPosition();
@@ -118,13 +129,7 @@ public class Checkers extends Game {
             possibleMoves.add(new Square(position.row++,position.column--));
         }
 
-        for (Square i: possibleMoves) {
-            // This checks to see if the piece is in the horizontal and vertical bounds of a square in an immensely convoluted manner.
-            if ((xPos >= i.getPixel()[0] && xPos <= i.getPixel()[0]+80) && (yPos >= i.getPixel()[1] && yPos <= i.getPixel()[1]+80)) {
-                return true;
-            }
-        }
-        return false;
+        return checkMoves(possibleMoves, xPos, yPos);
     }
 
     @Override

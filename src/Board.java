@@ -15,11 +15,17 @@ import static javax.swing.BoxLayout.Y_AXIS;
  * @author burke
  */
 public class Board {
+    // 2D Square array representing the board in a back end regard
     public Square[][] board;
+    // ImageIcon representing the graphic of the board
     public ImageIcon boardDisplay;
+    // String used to identify the type of board (to base the color of the squares off of)
     private String type;
+    // BoardPanel (detailed below) representing the GUI of the board
     public BoardPanel gameWindow;
+    // JFrame to store the board and display it
     public JFrame disp;
+
     public Board (String type) {
         this.board = new Square[8][8];
         this.type = type;
@@ -58,9 +64,10 @@ public class Board {
                     pauseMenu.setLocation(760, 240);
                     GridBagConstraints gbc = new GridBagConstraints();
                     gbc.gridwidth = GridBagConstraints.REMAINDER;
+                    gbc.ipady = 1;
                     gbc.fill = GridBagConstraints.HORIZONTAL;
-
-                    JLabel label = new JLabel("PAUSE");
+                    JLabel logo = new JLabel("", new ImageIcon( "logo.png"), SwingConstants.CENTER);
+                    JLabel label = new JLabel("PAUSE", SwingConstants.CENTER);
                     JButton returnMenu = new JButton("Return to Launcher");
                     returnMenu.addActionListener(new ActionListener() {
                         @Override
@@ -76,6 +83,7 @@ public class Board {
                             launcher.setVisible(true);
                         }
                     });
+                    pauseMenu.add(logo, gbc);
                     pauseMenu.add(label, gbc);
                     pauseMenu.add(returnMenu, gbc);
                     pauseMenu.setFocusable(true);
@@ -115,6 +123,10 @@ public class Board {
             return null;
         }
     }
+
+    /**
+     * Displays the board
+     */
     public void display() {
         disp.setSize(1920, 1080);
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);

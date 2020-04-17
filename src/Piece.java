@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 
 /**
- * A class representing a piece in a board game. Used for Chess, Checkers, and maybe Battleship
+ * A class representing a piece in a board game. Used for Chess, Checkers, and Battleship
  * @author burke
  */
 public class Piece {
