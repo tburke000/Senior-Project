@@ -9,6 +9,8 @@ import java.awt.*;
  *
  * This class is the basis for the system. It contains a list of all the games on the
  * table, and is the hub of the table.
+ *
+ * Although slight improvements, primarily legacy code from Version I
  */
 public class Launcher {
     //static

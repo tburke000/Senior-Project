@@ -134,7 +134,18 @@ public class Checkers extends Game {
 
     @Override
     public void takePiece(Piece taker, Piece takee) {
+        Square position = taker.getPosition();
+        Square oPosition = takee.getPosition();
 
+        if ((position.row++)  == (oPosition.row) && (position.column++) == (oPosition.column)) {
+
+        } else if ((position.row--)  == (oPosition.row) && (position.column--) == (oPosition.column)) {
+
+        } else if ((position.row--)  == (oPosition.row) && (position.column++) == (oPosition.column)) {
+
+        } else if ((position.row++)  == (oPosition.row) && (position.column--) == (oPosition.column)) {
+
+        }
     }
 
     @Override

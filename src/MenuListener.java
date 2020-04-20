@@ -51,7 +51,7 @@ public class MenuListener implements ActionListener {
             JLabel error = new JLabel("There was an error. Please try again");
             errorFrame.add(error);
             errorFrame.setVisible(true);
-        }
+                    }
     }
 
 }

@@ -66,7 +66,7 @@ public class Board {
                     gbc.gridwidth = GridBagConstraints.REMAINDER;
                     gbc.ipady = 1;
                     gbc.fill = GridBagConstraints.HORIZONTAL;
-                    JLabel logo = new JLabel("", new ImageIcon( "logo.png"), SwingConstants.CENTER);
+                    JLabel logo = new JLabel("", new ImageIcon("logo.png"), SwingConstants.CENTER);
                     JLabel label = new JLabel("PAUSE", SwingConstants.CENTER);
                     JButton returnMenu = new JButton("Return to Launcher");
                     returnMenu.addActionListener(new ActionListener() {

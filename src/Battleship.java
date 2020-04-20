@@ -22,7 +22,6 @@ public class Battleship extends Game {
 
     @Override
     public void start() {
-
         display();
     }
 
