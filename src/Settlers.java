@@ -4,6 +4,7 @@ import java.util.Set;
 
 /**
  * Class representing the board game Settlers of Catan, playable using the Knight's Party Table.
+ * @author burke
  */
 public class Settlers extends Game {
     private LinkedList<DevCard> deck;
@@ -45,6 +46,10 @@ public class Settlers extends Game {
 
     }
 
+    /**
+     * Generates the deck of Development Cards for Settlers of Catan
+     * @return a shuffled deck of cards in a Linked List
+     */
     private LinkedList<DevCard> generateDeck () {
         int nCards = 0;
         int nKnight = 0;
@@ -96,6 +101,10 @@ public class Settlers extends Game {
         return deck;
     }
 
+    /**
+     * Generates tiles for the map.
+     * @return Hex tiles for the map in the form of a Linked List.
+     */
     private LinkedList<Tile> generateMap () {
         LinkedList<Tile> tiles = new LinkedList<>();
         int nHexes = 0;
