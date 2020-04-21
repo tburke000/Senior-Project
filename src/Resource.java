@@ -1,7 +1,7 @@
 public class Resource {
     private String type;
 
-    public Resource () {
-
+    public Resource (String type) {
+        this.type = type;
     }
 }

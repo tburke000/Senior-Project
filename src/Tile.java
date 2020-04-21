@@ -36,7 +36,7 @@ public class Tile {
                 return null;
         }
 
-        return new Resource();
+        return new Resource(resourceType);
     }
 
 }
