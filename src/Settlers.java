@@ -1,3 +1,4 @@
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Set;
@@ -23,7 +24,9 @@ public class Settlers extends Game {
 
     @Override
     public void display() {
+        for (Tile i : map) {
 
+        }
     }
 
     @Override
@@ -137,6 +140,7 @@ public class Settlers extends Game {
 
             tiles.add(new Tile("Desert"));
         }
+        Collections.shuffle(tiles);
 
         return tiles;
 

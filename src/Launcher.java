@@ -17,7 +17,7 @@ public class Launcher {
     static JButton chekkers = new JButton("Checkers");
     static JButton chess = new JButton("Chess");
     static JButton battleship = new JButton("Battleship");
-
+    static JButton catan = new JButton("Settlers of Catan");
     static JButton sd = new JButton("Shut Down");
 
     public static JFrame jf = dispMenu();
@@ -53,10 +53,12 @@ public class Launcher {
         chess.addActionListener(li);
         battleship.addActionListener(li);
         sd.addActionListener(li);
+        catan.addActionListener(li);
 
+        panel.add(battleship, gbc);
         panel.add(chekkers, gbc);
         panel.add(chess, gbc);
-        panel.add(battleship, gbc);
+        panel.add(catan, gbc);
         panel.add(sd, gbc);
 
         titlePanel.add(title, BorderLayout.NORTH);
