@@ -32,6 +32,12 @@ public class MenuListener implements ActionListener {
                 Launcher.jf.dispose();
 
         }
+        else if(source == Launcher.catan)
+        {
+                Launcher.start(new Settlers());
+                Launcher.jf.dispose();
+
+        }
         else if(source == Launcher.sd){
             try {
                 Runtime.getRuntime().exec("shutdown -s -t 3");
@@ -51,7 +57,7 @@ public class MenuListener implements ActionListener {
             JLabel error = new JLabel("There was an error. Please try again");
             errorFrame.add(error);
             errorFrame.setVisible(true);
-                    }
+        }
     }
 
 }

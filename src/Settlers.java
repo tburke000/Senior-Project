@@ -10,11 +10,11 @@ import java.util.Set;
 public class Settlers extends Game {
     private LinkedList<DevCard> deck;
     private LinkedList<Tile> map;
-
+    private Board board = new Board("settlers");
 
     public Settlers () {
-        deck = generateDeck();
-        map = generateMap();
+        this.deck = generateDeck();
+        this.map = generateMap();
     }
 
     @Override
@@ -24,8 +24,10 @@ public class Settlers extends Game {
 
     @Override
     public void display() {
+        board.display();
         for (Tile i : map) {
-
+            PiecePanel hex = new PiecePanel(i);
+            board.gameWindow.add(hex);
         }
     }
 

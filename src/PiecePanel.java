@@ -26,6 +26,11 @@ public class PiecePanel extends JComponent implements ImageObserver {
         addDragListeners();
     }
 
+    public PiecePanel (Tile tile) {
+        _image = tile.getImage();
+        addDragListeners();
+    }
+
     /**
      * Paints the graphic of a piece onto the piece panel
      * @param g
@@ -115,6 +120,8 @@ public class PiecePanel extends JComponent implements ImageObserver {
                     return new Dimension(80, 320);
                 case "cruiser":
                     return new Dimension(80, 240);
+                case "hex":
+                    return new Dimension(222, 260);
                 default:
                     return new Dimension(240, 80);
             }

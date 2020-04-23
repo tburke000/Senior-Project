@@ -93,12 +93,6 @@ public class Checkers extends Game {
             board.gameWindow.add(visual);
             System.out.println(visual.getLocation());
         }
-
-        //savebutton();p
-        // deletePicture();
-        //   printDoodads();
-
-
     }
 
     @Override
