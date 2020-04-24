@@ -35,7 +35,7 @@ public class Tile extends Piece {
                 default:
             }
         } catch (Exception e) {
-            System.out.println(e + ": Error finding image");
+
         }
 
     }

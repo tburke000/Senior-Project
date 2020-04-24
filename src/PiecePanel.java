@@ -120,6 +120,10 @@ public class PiecePanel extends JComponent implements ImageObserver {
                 default:
                     return new Dimension(240, 80);
             }
+        } else if (isTile(_piece)){
+            return new Dimension(222, 256);
+        } else if (isCard(_piece)) {
+            return new Dimension(160,236);
         } else {
             return new Dimension(80, 80);
         }
@@ -148,5 +152,25 @@ public class PiecePanel extends JComponent implements ImageObserver {
         }
     }
 
-}
+    /**
+     * Also pretty standard, determines if a piece is a tile in Settlers.
+     * @param _piece the piece in question
+     * @return True if the piece is from Settlers, false if not.
+     */
+    private boolean isTile(Piece _piece) {
+        if (_piece.getType().equals("Hill") || _piece.getType().equals("Pasture") || _piece.getType().equals("Forest") || _piece.getType().equals("Mountain") || _piece.getType().equals("Field")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    private boolean isCard (Piece _piece) {
+        if (_piece.getType().equals("ore") || _piece.getType().equals("brick") || _piece.getType().equals("grain") || _piece.getType().equals("lumber") || _piece.getType().equals("wool")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+}
