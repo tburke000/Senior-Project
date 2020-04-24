@@ -52,8 +52,8 @@ public class Launcher {
         chekkers.addActionListener(li);
         chess.addActionListener(li);
         battleship.addActionListener(li);
-        sd.addActionListener(li);
         catan.addActionListener(li);
+        sd.addActionListener(li);
 
         panel.add(battleship, gbc);
         panel.add(chekkers, gbc);

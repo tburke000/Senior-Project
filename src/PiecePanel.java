@@ -26,11 +26,6 @@ public class PiecePanel extends JComponent implements ImageObserver {
         addDragListeners();
     }
 
-    public PiecePanel (Tile tile) {
-        _image = tile.getImage();
-        addDragListeners();
-    }
-
     /**
      * Paints the graphic of a piece onto the piece panel
      * @param g

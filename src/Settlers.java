@@ -29,6 +29,7 @@ public class Settlers extends Game {
             PiecePanel hex = new PiecePanel(i);
             board.gameWindow.add(hex);
         }
+        System.out.println(map.size());
     }
 
     @Override
@@ -56,7 +57,6 @@ public class Settlers extends Game {
      * @return a shuffled deck of cards in a Linked List
      */
     private LinkedList<DevCard> generateDeck () {
-        int nCards = 0;
         int nKnight = 0;
         int nVP = 0;
         int nYearOp = 0;
@@ -64,39 +64,34 @@ public class Settlers extends Game {
         int nRoad = 0;
         LinkedList<DevCard> deck = new LinkedList<>();
         DevCard card;
-        while (nCards < 25) {
+        while (deck.size() < 25) {
             while (nKnight < 14) {
                 card = new DevCard("Knight");
                 deck.add(card);
-                nCards++;
                 nKnight++;
             }
 
             while (nVP < 5) {
                 card = new DevCard("Victory Point");
                 deck.add(card);
-                nCards++;
                 nVP++;
             }
 
             while (nYearOp < 2) {
                 card = new DevCard("Year of Plenty");
                 deck.add(card);
-                nCards++;
                 nYearOp++;
             }
 
             while (nMonopoly < 2) {
                 card = new DevCard("Monopoly");
                 deck.add(card);
-                nCards++;
-                nYearOp++;
+                nMonopoly++;
             }
 
             while (nRoad < 2) {
                 card = new DevCard("Road Building");
                 deck.add(card);
-                nCards++;
                 nRoad++;
             }
         }
@@ -112,14 +107,13 @@ public class Settlers extends Game {
      */
     private LinkedList<Tile> generateMap () {
         LinkedList<Tile> tiles = new LinkedList<>();
-        int nHexes = 0;
         int nForest = 0;
         int nPasture = 0;
         int nFields = 0;
         int nHills = 0;
         int nMountains = 0;
 
-        while (nHexes < 19) {
+        while (tiles.size() <= 19) {
             while ((nForest < 4) && (nPasture < 4) && (nFields < 4)) {
                 tiles.add(new Tile("Forest"));
                 tiles.add(new Tile("Pasture"));
@@ -128,7 +122,6 @@ public class Settlers extends Game {
                 nForest++;
                 nPasture++;
                 nFields++;
-                nHexes++;
             }
 
             while ((nHills < 3) && (nMountains < 3)) {
@@ -137,13 +130,12 @@ public class Settlers extends Game {
 
                 nHills++;
                 nMountains++;
-                nHexes++;
             }
 
             tiles.add(new Tile("Desert"));
         }
         Collections.shuffle(tiles);
-
+        System.out.println(tiles);
         return tiles;
 
     }

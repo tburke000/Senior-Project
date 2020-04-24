@@ -111,12 +111,38 @@ public class Piece {
                 case "submarine":
                     this.image = ImageIO.read(new File("src/SubH.png"));
                     System.out.println("Image Found: Submarine");
+                    break;
                 case "redpeg":
                     this.image = ImageIO.read(new File("src/RedPeg.png"));
                     System.out.println("Image Found: Red Peg");
+                    break;
                 case "whitepeg":
                     this.image = ImageIO.read(new File("src/WhitePeg.png"));
                     System.out.println("Image Found: White Peg");
+                    break;
+                case "Hill":
+                    this.image = ImageIO.read(new File("src/hills.png"));
+                    System.out.println("Successfully found image for tile");
+                    break;
+                case "Pasture":
+                    this.image = ImageIO.read(new File("src/pasture.png"));
+                    System.out.println("Successfully found image for tile");
+                    break;
+                case "Mountain":
+                    this.image = ImageIO.read(new File("src/mountains.png"));
+                    System.out.println("Successfully found image for tile");
+                    break;
+                case "Field":
+                    this.image = ImageIO.read(new File("src/fields.png"));
+                    System.out.println("Successfully found image for tile");
+                    break;
+                case "Forest":
+                    this.image = ImageIO.read(new File("src/forests.png"));
+                    System.out.println("Successfully found image for tile");
+                    break;
+                default:
+                    this.image = ImageIO.read(new File("src/desert.png"));
+                    System.out.println("Successfully found image for tile");
             }
         } catch (Exception e) {
             System.out.println(e + ": Error finding image");
