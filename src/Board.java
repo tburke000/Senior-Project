@@ -128,16 +128,20 @@ public class Board {
      * Displays the board
      */
     public void display() {
-        disp.setSize(1280, 1024);
-        disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        disp.setUndecorated(true);
+        if (type.equals("battleship")) {
+            battleshipDisp();
+        } else {
 
-        gameWindow.setPreferredSize(new Dimension(1080, 1080));
-        gameWindow.setBorder(new EmptyBorder(0, 100, 0, 100));
+            disp.setSize(1280, 1024);
+            disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            disp.setUndecorated(true);
 
-        disp.add(gameWindow);
-        disp.setVisible(true);
+            gameWindow.setPreferredSize(new Dimension(1080, 1080));
+            gameWindow.setBorder(new EmptyBorder(0, 100, 0, 100));
 
+            disp.add(gameWindow);
+            disp.setVisible(true);
+        }
     }
 
     private void battleshipDisp () {
