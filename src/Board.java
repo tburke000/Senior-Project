@@ -128,16 +128,30 @@ public class Board {
      * Displays the board
      */
     public void display() {
-        disp.setSize(1920, 1080);
+        disp.setSize(1280, 1024);
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         disp.setUndecorated(true);
 
         gameWindow.setPreferredSize(new Dimension(1080, 1080));
-        gameWindow.setBorder(new EmptyBorder(0, 420, 0, 420));
+        gameWindow.setBorder(new EmptyBorder(0, 100, 0, 100));
 
         disp.add(gameWindow);
         disp.setVisible(true);
 
+    }
+
+    private void battleshipDisp () {
+        disp.setSize(1280, 3072);
+        disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        disp.setUndecorated(true);
+        BoardPanel panel2 = new BoardPanel(createImageIcon("battleship2.png", "Board"));
+        panel2.setPreferredSize(new Dimension(1080,1080));
+        panel2.setBorder(new EmptyBorder(1080,100,0,100));
+        gameWindow.setPreferredSize(new Dimension(1080, 1080));
+        gameWindow.setBorder(new EmptyBorder(0, 100, 0, 100));
+
+        disp.add(gameWindow);
+        disp.setVisible(true);
     }
 
 }
