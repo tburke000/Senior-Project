@@ -1,7 +1,5 @@
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
+import java.awt.image.BufferedImage;
 /**
  * Represents a tile, used in the game Settlers of Catan
  *
@@ -9,7 +7,6 @@ import java.io.File;
  */
 public class Tile extends Piece {
     private String type;
-    public BufferedImage image = new BufferedImage(222, 256, BufferedImage.TYPE_INT_RGB);
     private String resourceType;
 
     public Tile (String type) {

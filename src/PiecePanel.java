@@ -47,6 +47,10 @@ public class PiecePanel extends JComponent implements ImageObserver {
                     default:
                         graphic.drawImage(_image, 0, 0, 240, 80, this);
                 }
+            } else if (isTile(_piece)) {
+                graphic.drawImage(_image,0,0, 222, 256, this);
+            } else if (isCard(_piece)) {
+                graphic.drawImage(_image,0,0,160,236, this);
             } else {
                 graphic.drawImage(_image, 0, 0, 80, 80, this);
             }
@@ -158,7 +162,7 @@ public class PiecePanel extends JComponent implements ImageObserver {
      * @return True if the piece is from Settlers, false if not.
      */
     private boolean isTile(Piece _piece) {
-        if (_piece.getType().equals("Hill") || _piece.getType().equals("Pasture") || _piece.getType().equals("Forest") || _piece.getType().equals("Mountain") || _piece.getType().equals("Field")) {
+        if (_piece.getType().equals("Hill") || _piece.getType().equals("Pasture") || _piece.getType().equals("Forest") || _piece.getType().equals("Mountain") || _piece.getType().equals("Field")|| _piece.getType().equals("Desert")) {
             return true;
         } else {
             return false;

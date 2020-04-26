@@ -113,7 +113,7 @@ public class Settlers extends Game {
         int nHills = 0;
         int nMountains = 0;
 
-        while (tiles.size() <= 19) {
+        while (tiles.size() < 19) {
             while ((nForest < 4) && (nPasture < 4) && (nFields < 4)) {
                 tiles.add(new Tile("Forest"));
                 tiles.add(new Tile("Pasture"));
