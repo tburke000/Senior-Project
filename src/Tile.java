@@ -14,7 +14,7 @@ public class Tile extends Piece {
 
     public Tile (String type) {
         super(0, 0, false, type);
-
+        this.type = type;
         try {
             switch (this.type){
                 case "Hill":
