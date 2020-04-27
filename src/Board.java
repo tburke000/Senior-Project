@@ -33,7 +33,7 @@ public class Board {
 
         // Find the board image
         try {
-            this.boardDisplay = createImageIcon(type+".png", "Board");
+            this.boardDisplay = createImageIcon(type+".png", type);
         } catch (Exception e) {
             System.out.print("Error finding image");
         }
@@ -78,7 +78,7 @@ public class Board {
                             JFrame launcher = Launcher.dispMenu();
                             launcher.setSize(400, 600);
                             launcher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                            launcher.setSize(1920,1080);
+                            launcher.setSize(1280, 1024);
                             launcher.setUndecorated(true);
                             launcher.setVisible(true);
                         }
@@ -130,8 +130,9 @@ public class Board {
     public void display() {
         if (type.equals("battleship")) {
             battleshipDisp();
+        } else if (type.equals("settlers")) {
+            settlersDisp();
         } else {
-
             disp.setSize(1280, 1024);
             disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
             disp.setUndecorated(true);
@@ -158,6 +159,17 @@ public class Board {
         disp.setVisible(true);
     }
 
+    private void settlersDisp () {
+        disp.setSize(1280, 1024);
+        disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        disp.setUndecorated(true);
+
+        gameWindow.setPreferredSize(new Dimension(1280, 1024));
+        gameWindow.setBorder(new EmptyBorder(0, 100, 0, 100));
+
+        disp.add(gameWindow);
+        disp.setVisible(true);
+    }
 }
 
 /**
@@ -173,8 +185,13 @@ class BoardPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         Graphics2D graphic = (Graphics2D) g;
         graphic.clearRect(420, 0, 1080, 1080);
+
         if (board != null) {
-            graphic.drawImage(board.getImage(), 420, 0, 1080, 1080, this);
+            if (board.getDescription().equals("settlers")) {
+                graphic.drawImage(board.getImage(), 0, 0, 1280, 1024, this);
+            } else {
+                graphic.drawImage(board.getImage(), 420, 0, 1080, 1080, this);
+            }
         }
     }
 

@@ -65,7 +65,7 @@ public class Launcher {
         titlePanel.add(panel, BorderLayout.CENTER);
 
         frame.add(titlePanel);
-        frame.setSize(1920, 1080);
+        frame.setSize(1280, 1024);
 
         return frame;
     }
