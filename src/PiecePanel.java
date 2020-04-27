@@ -127,7 +127,7 @@ public class PiecePanel extends JComponent implements ImageObserver {
         } else if (isTile(_piece)){
             return new Dimension(222, 256);
         } else if (isCard(_piece)) {
-            return new Dimension(160,236);
+            return new Dimension(200,300);
         } else {
             return new Dimension(80, 80);
         }
@@ -149,7 +149,11 @@ public class PiecePanel extends JComponent implements ImageObserver {
      * @return True if the piece is a ship, false if not. Never empty, null, or 0.
      */
     private boolean isShip(Piece _piece) {
-        if (_piece.getType().equals("carrier") || _piece.getType().equals("battleship") || _piece.getType().equals("destroyer") || _piece.getType().equals("cruiser") || _piece.getType().equals("submarine")) {
+        if (_piece.getType().equals("carrier")
+                || _piece.getType().equals("battleship")
+                || _piece.getType().equals("destroyer")
+                || _piece.getType().equals("cruiser")
+                || _piece.getType().equals("submarine")) {
             return true;
         } else {
             return false;
@@ -162,7 +166,12 @@ public class PiecePanel extends JComponent implements ImageObserver {
      * @return True if the piece is from Settlers, false if not.
      */
     private boolean isTile(Piece _piece) {
-        if (_piece.getType().equals("Hill") || _piece.getType().equals("Pasture") || _piece.getType().equals("Forest") || _piece.getType().equals("Mountain") || _piece.getType().equals("Field")|| _piece.getType().equals("Desert")) {
+        if (_piece.getType().equals("Hill")
+                || _piece.getType().equals("Pasture")
+                || _piece.getType().equals("Forest")
+                || _piece.getType().equals("Mountain")
+                || _piece.getType().equals("Field")
+                || _piece.getType().equals("Desert")) {
             return true;
         } else {
             return false;
@@ -170,7 +179,11 @@ public class PiecePanel extends JComponent implements ImageObserver {
     }
 
     private boolean isCard (Piece _piece) {
-        if (_piece.getType().equals("ore") || _piece.getType().equals("brick") || _piece.getType().equals("grain") || _piece.getType().equals("lumber") || _piece.getType().equals("wool")) {
+        if (_piece.getType().equals("Knight")
+                || _piece.getType().equals("Victory Point")
+                || _piece.getType().equals("Year of Plenty")
+                || _piece.getType().equals("Road Building")
+                || _piece.getType().equals("Monopoly")) {
             return true;
         } else {
             return false;

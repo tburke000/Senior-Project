@@ -122,22 +122,42 @@ public class Piece {
                     break;
                 case "Hill":
                     this.image = ImageIO.read(new File("src/hills.png"));
-                    System.out.println("Successfully found image for tile");
+                    System.out.println("Successfully found image for Hills tile");
                     break;
                 case "Pasture":
                     this.image = ImageIO.read(new File("src/pasture.png"));
-                    System.out.println("Successfully found image for tile");
+                    System.out.println("Successfully found image for Pasture tile");
                     break;
                 case "Mountain":
                     this.image = ImageIO.read(new File("src/mountains.png"));
-                    System.out.println("Successfully found image for tile");
+                    System.out.println("Successfully found image for Mountain tile");
                     break;
                 case "Field":
                     this.image = ImageIO.read(new File("src/fields.png"));
-                    System.out.println("Successfully found image for tile");
+                    System.out.println("Successfully found image for Fields tile");
                     break;
                 case "Forest":
                     this.image = ImageIO.read(new File("src/forests.png"));
+                    System.out.println("Successfully found image for Forest tile");
+                    break;
+                case "Knight":
+                    this.image = ImageIO.read(new File("src/knight.png"));
+                    System.out.println("Image Found: Knight Card");
+                    break;
+                case "Victory Point":
+                    this.image = ImageIO.read(new File("src/victory point.png"));
+                    System.out.println("Successfully found image for tile");
+                    break;
+                case "Road Building":
+                    this.image = ImageIO.read(new File("src/road building.png"));
+                    System.out.println("Successfully found image for Road Building Card");
+                    break;
+                case "Year of Plenty":
+                    this.image = ImageIO.read(new File("src/year of plenty.png"));
+                    System.out.println("Successfully found image for Victory Point Card");
+                    break;
+                case "Monopoly":
+                    this.image = ImageIO.read(new File("src/monopoly.png"));
                     System.out.println("Successfully found image for tile");
                     break;
                 default:
@@ -153,9 +173,7 @@ public class Piece {
 
     }
 
-    public void setType (String type) {
-        this.type = type;
-    }
+    public void setType (String type) { this.type = type; }
 
     public String getType () {
         return type;
