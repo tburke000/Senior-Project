@@ -128,7 +128,10 @@ public class PiecePanel extends JComponent implements ImageObserver {
             return new Dimension(222, 256);
         } else if (isCard(_piece)) {
             return new Dimension(200,300);
-        } else {
+        } else
+        // TODO slap in an else if for peg detection
+            // If so, return the dimension of a peg
+            {
             return new Dimension(80, 80);
         }
     }
@@ -178,6 +181,11 @@ public class PiecePanel extends JComponent implements ImageObserver {
         }
     }
 
+    /**
+     * Function that determines if a piece is a Development Card from Settlers of Catan
+     * @param _piece the piece in question
+     * @return
+     */
     private boolean isCard (Piece _piece) {
         if (_piece.getType().equals("Knight")
                 || _piece.getType().equals("Victory Point")
@@ -189,5 +197,7 @@ public class PiecePanel extends JComponent implements ImageObserver {
             return false;
         }
     }
+
+    // TODO implement function that returns true if a piece is a peg
 
 }
