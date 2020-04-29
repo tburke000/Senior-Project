@@ -1,7 +1,5 @@
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Set;
 
 /**
  * Class representing the board game Settlers of Catan, playable using the Knight's Party Table.
@@ -13,8 +11,12 @@ public class Settlers extends Game {
     private Board board = new Board("settlers");
 
     public Settlers () {
+        SettlersPlayer player1 = new SettlersPlayer();
+        SettlersPlayer player2 = new SettlersPlayer();
+
         this.deck = generateDeck();
         this.map = generateMap();
+
     }
 
     @Override
@@ -29,7 +31,12 @@ public class Settlers extends Game {
             PiecePanel hex = new PiecePanel(i);
             board.gameWindow.add(hex);
         }
-        System.out.println(map.size());
+
+//        for (DevCard i : deck) {
+//            PiecePanel card = new PiecePanel(i);
+//
+//        }
+
     }
 
     @Override
@@ -49,6 +56,11 @@ public class Settlers extends Game {
 
     @Override
     public void win(Boolean player) {
+
+    }
+
+
+    public void win(SettlersPlayer player) {
 
     }
 
@@ -140,4 +152,17 @@ public class Settlers extends Game {
 
     }
 
+    private void giveResource (DevCard card, SettlersPlayer player) {
+        switch (card.getType()) {
+
+        }
+    }
+
+    /**
+     * Rolls two dice
+     * @return
+     */
+    private int diceRoll () {
+        return 2 * (int) Math.random() * 6;
+    }
 }

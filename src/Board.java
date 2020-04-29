@@ -65,6 +65,7 @@ public class Board {
                     JLabel logo = new JLabel("", new ImageIcon("logo.png"), SwingConstants.CENTER);
                     JLabel label = new JLabel("PAUSE", SwingConstants.CENTER);
                     JButton returnMenu = new JButton("Return to Launcher");
+
                     returnMenu.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -79,6 +80,7 @@ public class Board {
                             launcher.setVisible(true);
                         }
                     });
+
                     pauseMenu.add(logo, gbc);
                     pauseMenu.add(label, gbc);
                     pauseMenu.add(returnMenu, gbc);
@@ -156,15 +158,66 @@ public class Board {
     }
 
     private void settlersDisp () {
-        disp.setSize(1280, 1024);
+        disp.setSize(1280, 3072);
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         disp.setUndecorated(true);
 
+        BoardPanel player1View = new BoardPanel(boardDisplay);
+        BoardPanel player2View = new BoardPanel(boardDisplay);
+
+        // Holds buttons for generating roads, settlements, and resources
+        JPanel thyHolyButtonHolder1 = new JPanel();
+        JPanel thyHolyButtonHolder2 = new JPanel();
+        JButton roadButton = new JButton("Roads");
+        JButton settlementButton = new JButton("Settlements");
+        JButton cityButton = new JButton("Cities");
+
+        roadButton.addActionListener(bigActionListener("roads"));
+        settlementButton.addActionListener(bigActionListener("settlements"));
+        cityButton.addActionListener(bigActionListener("cities"));
+
+        thyHolyButtonHolder1.add(roadButton);
+        thyHolyButtonHolder1.add(settlementButton);
+        thyHolyButtonHolder1.add(cityButton);
+
+        // Establish three views, one for each player and one for the main display
+        player1View.setPreferredSize(new Dimension(1280, 1024));
+        player1View.setBorder(new EmptyBorder(0, 100, 0, 100));
+        player2View.setPreferredSize(new Dimension(1280, 1024));
+        player2View.setBorder(new EmptyBorder(0, 100, 0, 100));
         gameWindow.setPreferredSize(new Dimension(1280, 1024));
-        gameWindow.setBorder(new EmptyBorder(0, 100, 0, 100));
+        gameWindow.setBorder(new EmptyBorder(0, 100, 0, 0));
 
         disp.add(gameWindow);
         disp.setVisible(true);
+    }
+
+    /**
+     * Creates an action listener for Thy Holy Button Holder
+     * @return An action listener for Thy Holy Button Holder
+     */
+    private ActionListener bigActionListener (String thingusPlaceHolderTitle) {
+        ActionListener bigAl = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switch (thingusPlaceHolderTitle) {
+                    case "Roads":
+                        PiecePanel road = new PiecePanel(new Piece(0,0, false, "roads"));
+                        gameWindow.add(road);
+                        break;
+                    case "Settlements":
+                        PiecePanel settlements = new PiecePanel(new Piece(0,0, false, "settlements"));
+                        gameWindow.add(settlements);
+                        break;
+                    case "Cities":
+                        PiecePanel cities = new PiecePanel(new Piece(0,0, false, "cities"));
+                        gameWindow.add(cities);
+                        break;
+                    default:
+                }
+            }
+        };
+        return bigAl;
     }
 }
 
