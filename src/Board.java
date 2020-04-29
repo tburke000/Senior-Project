@@ -30,6 +30,7 @@ public class Board {
         // Find the board image
         try {
             this.boardDisplay = createImageIcon(type+".png", type);
+            System.out.println(boardDisplay.getDescription());
         } catch (Exception e) {
             System.out.print("Error finding image");
         }
@@ -57,7 +58,7 @@ public class Board {
                     JFrame pauseMenu = new JFrame();
                     pauseMenu.setLayout(new GridBagLayout());
                     pauseMenu.setSize(400, 600);
-                    pauseMenu.setLocation(760, 240);
+                    pauseMenu.setLocation(440, 240);
                     GridBagConstraints gbc = new GridBagConstraints();
                     gbc.gridwidth = GridBagConstraints.REMAINDER;
                     gbc.ipady = 1;
@@ -135,8 +136,8 @@ public class Board {
             disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
             disp.setUndecorated(true);
 
-            gameWindow.setPreferredSize(new Dimension(1080, 1080));
-            gameWindow.setBorder(new EmptyBorder(0, 100, 0, 100));
+            gameWindow.setPreferredSize(new Dimension(1280, 1024));
+            gameWindow.setBorder(new EmptyBorder(0, 128, 0, 128));
 
             disp.add(gameWindow);
             disp.setVisible(true);
@@ -158,7 +159,7 @@ public class Board {
     }
 
     private void settlersDisp () {
-        disp.setSize(1280, 3072);
+        disp.setSize(1280, 1024);
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         disp.setUndecorated(true);
 
@@ -186,9 +187,13 @@ public class Board {
         player2View.setPreferredSize(new Dimension(1280, 1024));
         player2View.setBorder(new EmptyBorder(0, 100, 0, 100));
         gameWindow.setPreferredSize(new Dimension(1280, 1024));
-        gameWindow.setBorder(new EmptyBorder(0, 100, 0, 0));
 
+//        disp.add(player1View);
+//        disp.add(thyHolyButtonHolder1);
         disp.add(gameWindow);
+//        disp.add(thyHolyButtonHolder2);
+//        disp.add(player2View);
+
         disp.setVisible(true);
     }
 
@@ -233,13 +238,15 @@ class BoardPanel extends JPanel {
 
     protected void paintComponent(Graphics g) {
         Graphics2D graphic = (Graphics2D) g;
-        graphic.clearRect(420, 0, 1080, 1080);
+
 
         if (board != null) {
-            if (board.getDescription().equals("settlers")) {
+            if (board.getDescription().contains("settlers")) {
+                graphic.clearRect(0, 0, 1080, 1080);
                 graphic.drawImage(board.getImage(), 0, 0, 1280, 1024, this);
             } else {
-                graphic.drawImage(board.getImage(), 420, 0, 1080, 1080, this);
+                graphic.clearRect(0, 0, 1024, 1024);
+                graphic.drawImage(board.getImage(), 0, 0, 1280, 1024, this);
             }
         }
     }
