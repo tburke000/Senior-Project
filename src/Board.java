@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
+
 
 /**
  * Class representing a game board programmatically
@@ -117,7 +117,7 @@ public class Board {
                                         String description) {
         java.net.URL imgURL = getClass().getResource(path);
         if (imgURL != null) {
-            return new ImageIcon(imgURL);
+            return new ImageIcon(imgURL, description);
         } else {
             System.err.println("Couldn't find file: " + path);
             return null;
@@ -160,7 +160,7 @@ public class Board {
     }
 
     private void settlersDisp () {
-        disp.setSize(1280, 2048);
+        disp.setSize(1280, 1024);
         //disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         disp.setUndecorated(true);
 
@@ -184,13 +184,17 @@ public class Board {
         settlementButton1.addActionListener(bigActionListener("settlements", true));
         cityButton1.addActionListener(bigActionListener("cities", true));
 
-        roadButton1.addActionListener(bigActionListener("roads", false));
-        settlementButton1.addActionListener(bigActionListener("settlements", false));
-        cityButton1.addActionListener(bigActionListener("cities", false));
+        roadButton2.addActionListener(bigActionListener("roads", false));
+        settlementButton2.addActionListener(bigActionListener("settlements", false));
+        cityButton2.addActionListener(bigActionListener("cities", false));
 
         thyHolyButtonHolder1.add(roadButton1);
         thyHolyButtonHolder1.add(settlementButton1);
         thyHolyButtonHolder1.add(cityButton1);
+
+        thyHolyButtonHolder2.add(roadButton1);
+        thyHolyButtonHolder2.add(settlementButton1);
+        thyHolyButtonHolder2.add(cityButton1);
 
         // Establish three views, one for each player and one for the main display
         player1View.setPreferredSize(new Dimension(1280, 1024));
@@ -200,7 +204,7 @@ public class Board {
         gameWindow.setPreferredSize(new Dimension(1280, 1024));
 
         disp.add(player1View);
-        disp.add(gameWindow);
+        //disp.add(gameWindow);
 //        disp.add(thyHolyButtonHolder2);
 //        disp.add(player2View);
 

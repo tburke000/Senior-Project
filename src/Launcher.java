@@ -1,6 +1,9 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 /**
  * After a frustrating combined three hours, I've decided to completely start fresh.
@@ -45,6 +48,16 @@ public class Launcher {
         JLabel title = new JLabel("Knight's Party Table II", SwingConstants.CENTER);
         title.setFont(title.getFont().deriveFont(18.0f));
         titlePanel.setLayout(new BorderLayout());
+
+        try {
+            BufferedImage image = ImageIO.read(new File("src/logo.png"));
+            ImagePanel logo = new ImagePanel(image);
+            logo.setSize(new Dimension(700, 533));
+            frame.add(logo, gbc);
+        } catch (Exception e)
+        {
+            System.out.println("I am going to throw myself in front of a skid loader");
+        }
         frame.setUndecorated(true);
         MenuListener li = new MenuListener();
         panel.setBorder(new EmptyBorder(15,15,15,15));
@@ -72,5 +85,24 @@ public class Launcher {
 
     public static void start(Game game) {
         game.start();
+    }
+}
+
+/**
+ * Class representing a static image for a JFrame
+ * Because Tony is sick of screwing around with JLabels
+ * @author burke
+ */
+class ImagePanel extends JPanel {
+    private Image image;
+    public ImagePanel (Image image) {
+        this.image = image;
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        Graphics2D graphic = (Graphics2D) g;
+//        graphic.clearRect(0, 0, 700, 533);
+        graphic.drawImage(image, 0, 0, 700, 533, this);
+
     }
 }
