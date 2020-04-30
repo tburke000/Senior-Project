@@ -147,7 +147,6 @@ public class Settlers extends Game {
             tiles.add(new Tile("Desert"));
         }
         Collections.shuffle(tiles);
-        System.out.println(tiles);
         return tiles;
 
     }

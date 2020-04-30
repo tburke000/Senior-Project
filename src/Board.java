@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
 /**
  * Class representing a game board programmatically
@@ -159,8 +160,8 @@ public class Board {
     }
 
     private void settlersDisp () {
-        disp.setSize(1280, 1024);
-        disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        disp.setSize(1280, 2048);
+        //disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         disp.setUndecorated(true);
 
         BoardPanel player1View = new BoardPanel(boardDisplay);
@@ -169,27 +170,36 @@ public class Board {
         // Holds buttons for generating roads, settlements, and resources
         JPanel thyHolyButtonHolder1 = new JPanel();
         JPanel thyHolyButtonHolder2 = new JPanel();
-        JButton roadButton = new JButton("Roads");
-        JButton settlementButton = new JButton("Settlements");
-        JButton cityButton = new JButton("Cities");
 
-        roadButton.addActionListener(bigActionListener("roads"));
-        settlementButton.addActionListener(bigActionListener("settlements"));
-        cityButton.addActionListener(bigActionListener("cities"));
+        // Create some buttons
+        JButton roadButton1 = new JButton("Roads");
+        JButton settlementButton1 = new JButton("Settlements", createImageIcon("settlement1.png", "settlement"));
+        JButton cityButton1 = new JButton("Cities", createImageIcon("settlement1.png", "city1"));
 
-        thyHolyButtonHolder1.add(roadButton);
-        thyHolyButtonHolder1.add(settlementButton);
-        thyHolyButtonHolder1.add(cityButton);
+        JButton roadButton2 = new JButton("Roads");
+        JButton settlementButton2 = new JButton("Settlements", createImageIcon("settlement1.png", "settlement"));
+        JButton cityButton2 = new JButton("Cities", createImageIcon("settlement1.png", "city1"));
+
+        roadButton1.addActionListener(bigActionListener("roads", true));
+        settlementButton1.addActionListener(bigActionListener("settlements", true));
+        cityButton1.addActionListener(bigActionListener("cities", true));
+
+        roadButton1.addActionListener(bigActionListener("roads", false));
+        settlementButton1.addActionListener(bigActionListener("settlements", false));
+        cityButton1.addActionListener(bigActionListener("cities", false));
+
+        thyHolyButtonHolder1.add(roadButton1);
+        thyHolyButtonHolder1.add(settlementButton1);
+        thyHolyButtonHolder1.add(cityButton1);
 
         // Establish three views, one for each player and one for the main display
         player1View.setPreferredSize(new Dimension(1280, 1024));
-        player1View.setBorder(new EmptyBorder(0, 100, 0, 100));
+        player1View.add(thyHolyButtonHolder1);
         player2View.setPreferredSize(new Dimension(1280, 1024));
-        player2View.setBorder(new EmptyBorder(0, 100, 0, 100));
+        player2View.add(thyHolyButtonHolder2);
         gameWindow.setPreferredSize(new Dimension(1280, 1024));
 
-//        disp.add(player1View);
-//        disp.add(thyHolyButtonHolder1);
+        disp.add(player1View);
         disp.add(gameWindow);
 //        disp.add(thyHolyButtonHolder2);
 //        disp.add(player2View);
@@ -201,21 +211,30 @@ public class Board {
      * Creates an action listener for Thy Holy Button Holder
      * @return An action listener for Thy Holy Button Holder
      */
-    private ActionListener bigActionListener (String thingusPlaceHolderTitle) {
+    private ActionListener bigActionListener (String type, boolean owner) {
         ActionListener bigAl = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switch (thingusPlaceHolderTitle) {
+                switch (type) {
                     case "Roads":
                         PiecePanel road = new PiecePanel(new Piece(0,0, false, "roads"));
+                        if (owner) {
+                         road = new PiecePanel(new Piece(0,0, true, "roads"));
+                        }
                         gameWindow.add(road);
                         break;
                     case "Settlements":
                         PiecePanel settlements = new PiecePanel(new Piece(0,0, false, "settlements"));
+                        if (owner) {
+                            settlements = new PiecePanel(new Piece(0, 0, true, "settlements"));
+                        }
                         gameWindow.add(settlements);
                         break;
                     case "Cities":
                         PiecePanel cities = new PiecePanel(new Piece(0,0, false, "cities"));
+                        if (owner) {
+                            cities = new PiecePanel(new Piece(0, 0, true, "cities"));
+                        }
                         gameWindow.add(cities);
                         break;
                     default:
