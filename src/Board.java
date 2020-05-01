@@ -1,3 +1,5 @@
+import jdk.jfr.FlightRecorder;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -70,22 +72,26 @@ public class Board {
                     pauseMenu.setLocation(440, 240);
 
                     JLabel label = new JLabel("PAUSE", SwingConstants.CENTER);
+                    label.setBorder(new EmptyBorder(100, 0, 50, 0));
                     JPanel buttonPanel = new JPanel();
+                    JPanel pausePanel = new JPanel(new BorderLayout());
                     JButton returnMenu = new JButton("Return to Launcher");
+
+                    try {
+                        BufferedImage image = ImageIO.read(new File("src/logoPause.png"));
+                        JLabel logo  = new JLabel(new ImageIcon(image));
+                        logo.setSize(new Dimension(400, 304));
+                        pauseMenu.add(logo, BorderLayout.PAGE_START);
+
+                    } catch (Exception uhOh) {
+                        System.out.println("Sonovabitchi");
+                    }
 
                     returnMenu.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             disp.dispose();
                             pauseMenu.dispose();
-                            try {
-                                BufferedImage image = ImageIO.read(new File("src/logoPause.png"));
-                                JLabel logo  = new JLabel(new ImageIcon(image));
-                                logo.setSize(new Dimension(400, 304));
-                                pauseMenu.add(logo, BorderLayout.PAGE_START);
-                            } catch (Exception uhOh) {
-                                System.out.println("Sonovabitchi");
-                            }
                             JFrame launcher = Launcher.dispMenu();
                             launcher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             launcher.setSize(1280, 1024);
@@ -94,9 +100,10 @@ public class Board {
                         }
                     });
 
+                    pausePanel.add(label, BorderLayout.PAGE_START);
                     buttonPanel.add(returnMenu);
-                    pauseMenu.add(label);
-                    pauseMenu.add(buttonPanel, BorderLayout.CENTER);
+                    pausePanel.add(buttonPanel);
+                    pauseMenu.add(pausePanel, BorderLayout.CENTER);
                     pauseMenu.setFocusable(true);
                     pauseMenu.setUndecorated(true);
                     pauseMenu.setVisible(true);
