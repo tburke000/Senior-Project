@@ -34,6 +34,7 @@ public class Board {
         this.type = type;
         Square square;
         this.graphicsDevices = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+
         // Find the board image
         try {
             this.boardDisplay = createImageIcon(type+".png", type);
@@ -176,6 +177,8 @@ public class Board {
         disp.setUndecorated(true);
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
+
+
         // Mixing it up, and will probably implement in Settlers - this just seems like a better
         // solution
         JFrame player1View = new JFrame();
@@ -186,6 +189,7 @@ public class Board {
         player2View.setSize(1280, 1024);
         player2View.setUndecorated(true);
         player2View.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
         try {
             BoardPanel player1Board = new BoardPanel(new ImageIcon(ImageIO.read(new File("/battleship2.png"))));
             BoardPanel player2Board = new BoardPanel(boardDisplay);
@@ -210,17 +214,17 @@ public class Board {
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         disp.setUndecorated(true);
         disp.setLayout(new BoxLayout(disp.getContentPane(), BoxLayout.Y_AXIS));
-        disp.setSize(new Dimension(1280, 999999));
+        disp.setSize(new Dimension(1280, 1024));
 
         // Create the needed panels
         JPanel player1View = new JPanel(new BorderLayout());
         player1View.setMaximumSize(new Dimension(1280, 1024));
-        player1View.setBackground(Color.green);
+
         JPanel player2View = new JPanel(new BorderLayout());
         player2View.setMaximumSize(new Dimension(1280, 1024));
         BoardPanel gameWindow = new BoardPanel(boardDisplay);
         gameWindow.setMaximumSize(new Dimension(1280, 1024));
-        gameWindow.setBackground(Color.MAGENTA);
+
         // Create two panels to house the vast amount of buttons
         JPanel thyHolyButtonHolder1 = new JPanel(new GridLayout(3, 2));
         thyHolyButtonHolder1.setBorder(new EmptyBorder(0, 200, 0, 200));

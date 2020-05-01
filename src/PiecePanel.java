@@ -55,7 +55,9 @@ public class PiecePanel extends JComponent implements ImageObserver {
                 graphic.drawImage(_image,0,0, 222, 256, this);
             } else if (isCard(_piece)) {
                 graphic.drawImage(_image,0,0,160,236, this);
-            } else {
+            } else if (isPeg(_piece)){
+                graphic.drawImage(_image,0,0,40,40, this);
+            } else{
                 graphic.drawImage(_image, 0, 0, 80, 80, this);
             }
         }
@@ -132,10 +134,9 @@ public class PiecePanel extends JComponent implements ImageObserver {
             return new Dimension(222, 256);
         } else if (isCard(_piece)) {
             return new Dimension(200,300);
-        } else
-        // TODO slap in an else if for peg detection
-            // If so, return the dimension of a peg
-            {
+        } else if (isPeg(_piece)) {
+            return new Dimension(40, 40);
+        } else {
             return new Dimension(80, 80);
         }
     }
@@ -202,6 +203,17 @@ public class PiecePanel extends JComponent implements ImageObserver {
         }
     }
 
-    // TODO implement function that returns true if a piece is a peg
-
+    /**
+     * Determines if a piece is a peg
+     * @param _piece
+     * @return
+     * @author chris
+     */
+    private boolean isPeg (Piece _piece) {
+        if (_piece.getType().equals("redpeg") || _piece.getType().equals("whitepeg")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
