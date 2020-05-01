@@ -27,12 +27,13 @@ public class Board {
     public BoardPanel gameWindow;
     // JFrame to store the board and display it
     public JFrame disp;
-
+    // JProbably doesn't belong here, but here's the graphics environment for the table
+    private GraphicsDevice[] graphicsDevices;
     public Board (String type) {
         this.board = new Square[8][8];
         this.type = type;
         Square square;
-
+        this.graphicsDevices = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
         // Find the board image
         try {
             this.boardDisplay = createImageIcon(type+".png", type);
@@ -161,18 +162,44 @@ public class Board {
         }
     }
 
+    /**
+     * Displays the proper display for displaying Battleship's display
+     * Each player gets a BoardPanel with their grid, buttons in the middle to spawn pegs
+     * Ships start off there by default, mostly because I'll be damned if I add 72 buttons
+     * at 3AM
+     * If you want to add 72 buttons, go for it
+     *
+     */
     private void battleshipDisp () {
-        disp.setSize(1280, 2048);
-        disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        disp.setLocation(1280, 1024);
+        disp.setSize(1280, 1024);
+        disp.setLocationRelativeTo(null);
         disp.setUndecorated(true);
-        BoardPanel panel2 = new BoardPanel(createImageIcon("battleship2.png", "Board"));
-        panel2.setPreferredSize(new Dimension(1080,1080));
-        panel2.setBorder(new EmptyBorder(1080,100,0,100));
-        gameWindow.setPreferredSize(new Dimension(1080, 1080));
-        gameWindow.setBorder(new EmptyBorder(0, 100, 0, 100));
+        disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        disp.add(gameWindow);
+        // Mixing it up, and will probably implement in Settlers - this just seems like a better
+        // solution
+        JFrame player1View = new JFrame();
+        player1View.setSize(1280, 1024);
+        player1View.setUndecorated(true);
+        player1View.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        JFrame player2View = new JFrame();
+        player2View.setSize(1280, 1024);
+        player2View.setUndecorated(true);
+        player2View.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        try {
+            BoardPanel player1Board = new BoardPanel(new ImageIcon(ImageIO.read(new File("/battleship2.png"))));
+            BoardPanel player2Board = new BoardPanel(boardDisplay);
+            player1View.add(player1Board);
+            player2View.add(player2Board);
+
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("Apparently Battleship2 doesn't exist");
+        }
+
+        player2View.setVisible(true);
+        player1View.setVisible(true);
+        //disp.add(gameWindow);
         disp.setVisible(true);
     }
 
