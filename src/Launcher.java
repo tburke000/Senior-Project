@@ -36,73 +36,62 @@ public class Launcher {
     public static JFrame dispMenu() {
 
         JFrame frame = new JFrame();
-        frame.setLayout((new GridBagLayout()));
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-
-        JPanel titlePanel = new JPanel();
-        JLabel title = new JLabel("Knight's Party Table II", SwingConstants.CENTER);
-        title.setFont(title.getFont().deriveFont(18.0f));
-        titlePanel.setLayout(new BorderLayout());
-
+        JPanel titlePanel = new JPanel(new BorderLayout());
         try {
+            frame.setLayout(new BorderLayout());
+            JPanel panel = new JPanel();
+            panel.setAlignmentX(JPanel.CENTER_ALIGNMENT);
+            panel.setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+
+
             BufferedImage image = ImageIO.read(new File("src/logo.png"));
-            ImagePanel logo = new ImagePanel(image);
+            JLabel logo  = new JLabel(new ImageIcon(image));
             logo.setSize(new Dimension(700, 533));
-            frame.add(logo, gbc);
-        } catch (Exception e)
-        {
-            System.out.println("I am going to throw myself in front of a skid loader");
+            frame.add(logo, BorderLayout.PAGE_START);
+
+
+            JLabel title = new JLabel("Knight's Party Table II", SwingConstants.CENTER);
+
+            title.setFont(title.getFont().deriveFont(18.0f));
+            titlePanel.add(title, BorderLayout.PAGE_START);
+            title.setBorder(new EmptyBorder(100, 10, 0, 10));
+            frame.setUndecorated(true);
+            MenuListener li = new MenuListener();
+
+            chekkers.addActionListener(li);
+            chess.addActionListener(li);
+            battleship.addActionListener(li);
+            catan.addActionListener(li);
+            sd.addActionListener(li);
+
+            panel.add(battleship, gbc);
+            panel.add(chekkers, gbc);
+            panel.add(chess, gbc);
+            panel.add(catan, gbc);
+            panel.add(sd, gbc);
+
+
+            titlePanel.add(panel);
+
+            // Make the colors uniform
+            frame.getContentPane().setBackground(Color.WHITE);
+            titlePanel.setBackground(Color.WHITE);
+            panel.setBackground(Color.WHITE);
+            frame.add(titlePanel);
+            frame.setSize(1280, 1024);
+
+        } catch (Exception e) {
+            System.out.println(e);
         }
-        frame.setUndecorated(true);
-        MenuListener li = new MenuListener();
-        panel.setBorder(new EmptyBorder(15,15,15,15));
-
-        chekkers.addActionListener(li);
-        chess.addActionListener(li);
-        battleship.addActionListener(li);
-        catan.addActionListener(li);
-        sd.addActionListener(li);
-
-        panel.add(battleship, gbc);
-        panel.add(chekkers, gbc);
-        panel.add(chess, gbc);
-        panel.add(catan, gbc);
-        panel.add(sd, gbc);
-
-        titlePanel.add(title, BorderLayout.NORTH);
-        titlePanel.add(panel, BorderLayout.CENTER);
-
-        frame.add(titlePanel);
-        frame.setSize(1280, 1024);
 
         return frame;
+
     }
 
     public static void start(Game game) {
         game.start();
-    }
-}
-
-/**
- * Class representing a static image for a JFrame
- * Because Tony is sick of screwing around with JLabels
- * @author burke
- */
-class ImagePanel extends JPanel {
-    private Image image;
-    public ImagePanel (Image image) {
-        this.image = image;
-    }
-    @Override
-    protected void paintComponent(Graphics g) {
-        Graphics2D graphic = (Graphics2D) g;
-//        graphic.clearRect(0, 0, 700, 533);
-        graphic.drawImage(image, 0, 0, 700, 533, this);
-
     }
 }

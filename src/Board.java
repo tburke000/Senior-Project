@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -5,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 
 /**
@@ -47,7 +50,12 @@ public class Board {
         }
 
         // Listens if escape is pressed during a game, if so opens the pause menu
-        gameWindow.addKeyListener(new KeyListener() {
+        gameWindow.addKeyListener(pauseMenuListener());
+        gameWindow.setFocusable(true);
+    }
+
+    private KeyListener pauseMenuListener () {
+        return new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
 
@@ -57,15 +65,12 @@ public class Board {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     JFrame pauseMenu = new JFrame();
-                    pauseMenu.setLayout(new GridBagLayout());
+                    pauseMenu.setLayout(new BorderLayout());
                     pauseMenu.setSize(400, 600);
                     pauseMenu.setLocation(440, 240);
-                    GridBagConstraints gbc = new GridBagConstraints();
-                    gbc.gridwidth = GridBagConstraints.REMAINDER;
-                    gbc.ipady = 1;
-                    gbc.fill = GridBagConstraints.HORIZONTAL;
-                    JLabel logo = new JLabel("", new ImageIcon("logo.png"), SwingConstants.CENTER);
+
                     JLabel label = new JLabel("PAUSE", SwingConstants.CENTER);
+                    JPanel buttonPanel = new JPanel();
                     JButton returnMenu = new JButton("Return to Launcher");
 
                     returnMenu.addActionListener(new ActionListener() {
@@ -73,9 +78,15 @@ public class Board {
                         public void actionPerformed(ActionEvent e) {
                             disp.dispose();
                             pauseMenu.dispose();
-
+                            try {
+                                BufferedImage image = ImageIO.read(new File("src/logoPause.png"));
+                                JLabel logo  = new JLabel(new ImageIcon(image));
+                                logo.setSize(new Dimension(400, 304));
+                                pauseMenu.add(logo, BorderLayout.PAGE_START);
+                            } catch (Exception uhOh) {
+                                System.out.println("Sonovabitchi");
+                            }
                             JFrame launcher = Launcher.dispMenu();
-                            launcher.setSize(400, 600);
                             launcher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             launcher.setSize(1280, 1024);
                             launcher.setUndecorated(true);
@@ -83,9 +94,9 @@ public class Board {
                         }
                     });
 
-                    pauseMenu.add(logo, gbc);
-                    pauseMenu.add(label, gbc);
-                    pauseMenu.add(returnMenu, gbc);
+                    buttonPanel.add(returnMenu);
+                    pauseMenu.add(label);
+                    pauseMenu.add(buttonPanel, BorderLayout.CENTER);
                     pauseMenu.setFocusable(true);
                     pauseMenu.setUndecorated(true);
                     pauseMenu.setVisible(true);
@@ -109,8 +120,7 @@ public class Board {
 
             @Override
             public void keyReleased(KeyEvent e) {}
-        });
-        gameWindow.setFocusable(true);
+        };
     }
 
     protected ImageIcon createImageIcon(String path,
