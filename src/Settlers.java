@@ -59,7 +59,10 @@ public class Settlers extends Game {
 
     }
 
-
+    /**
+     * If a player reaches 10 Victory Points, they win
+     * @param player
+     */
     public void win(SettlersPlayer player) {
 
     }

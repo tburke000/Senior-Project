@@ -19,6 +19,10 @@ public class PiecePanel extends JComponent implements ImageObserver {
     protected Cursor draggingCursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     protected Boolean overbearing = true;
 
+    /**
+     * Creates a movable graphic of a piece from a piece
+     * @param piece
+     */
     public PiecePanel (Piece piece) {
         _image = piece.getImage();
         _piece = piece;

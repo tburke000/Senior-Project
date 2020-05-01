@@ -161,9 +161,32 @@ public class Piece {
                     System.out.println("Successfully found image for tile");
                     break;
                 // Fill this one in later, adjust for vertical, horizontal, diagonal, OOF
-                case "roads":
+                case "roadsd1":
                     if (owner) {
-                        this.image = ImageIO.read(new File(""));
+                        this.image = ImageIO.read(new File("src/road1d1.png"));
+                    } else {
+                        this.image = ImageIO.read(new File("src/road2d1"));
+                    }
+                    break;
+                case "roadsd2":
+                    if (owner) {
+                        this.image = ImageIO.read(new File("src/road1d2"));
+                    } else {
+                        this.image = ImageIO.read(new File("src/road2d2"));
+                    }
+                    break;
+                case "roadsh":
+                    if (owner) {
+                        this.image = ImageIO.read(new File("src/road1h"));
+                    } else {
+                        this.image = ImageIO.read(new File("src/road2h"));
+                    }
+                    break;
+                case "roadsv":
+                    if (owner) {
+                        this.image = ImageIO.read(new File("src/road1v"));
+                    } else {
+                        this.image = ImageIO.read(new File("src/road2v"));
                     }
                     break;
                 case "settlements":
