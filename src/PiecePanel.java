@@ -156,7 +156,7 @@ public class PiecePanel extends JComponent implements ImageObserver {
      * @param _piece the piece in question
      * @return True if the piece is a ship, false if not. Never empty, null, or 0.
      */
-    private boolean isShip(Piece _piece) {
+    public boolean isShip(Piece _piece) {
         if (_piece.getType().equals("carrier")
                 || _piece.getType().equals("battleship")
                 || _piece.getType().equals("destroyer")
@@ -173,7 +173,7 @@ public class PiecePanel extends JComponent implements ImageObserver {
      * @param _piece the piece in question
      * @return True if the piece is from Settlers, false if not.
      */
-    private boolean isTile(Piece _piece) {
+    public boolean isTile(Piece _piece) {
         if (_piece.getType().equals("Hill")
                 || _piece.getType().equals("Pasture")
                 || _piece.getType().equals("Forest")
@@ -191,7 +191,7 @@ public class PiecePanel extends JComponent implements ImageObserver {
      * @param _piece the piece in question
      * @return
      */
-    private boolean isCard (Piece _piece) {
+    public boolean isCard (Piece _piece) {
         if (_piece.getType().equals("Knight")
                 || _piece.getType().equals("Victory Point")
                 || _piece.getType().equals("Year of Plenty")
@@ -209,7 +209,7 @@ public class PiecePanel extends JComponent implements ImageObserver {
      * @return
      * @author chris
      */
-    private boolean isPeg (Piece _piece) {
+    public boolean isPeg (Piece _piece) {
         if (_piece.getType().equals("redpeg") || _piece.getType().equals("whitepeg")) {
             return true;
         } else {

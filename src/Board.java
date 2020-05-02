@@ -1,5 +1,3 @@
-import jdk.jfr.FlightRecorder;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -25,10 +23,14 @@ public class Board {
     private String type;
     // BoardPanel (detailed below) representing the GUI of the board
     public BoardPanel gameWindow;
+    public JFrame player1View;
+    public JFrame player2View;
+
     // JFrame to store the board and display it
     public JFrame disp;
     // JProbably doesn't belong here, but here's the graphics environment for the table
     private GraphicsDevice[] graphicsDevices;
+
     public Board (String type) {
         this.board = new Square[8][8];
         this.type = type;
@@ -131,6 +133,21 @@ public class Board {
         };
     }
 
+    /**
+     * Displays multiple displays to the table
+     * @param screen
+     * @param frame
+     */
+    private void showOnScreen( int screen, JFrame frame ) {
+        if( screen > -1 && screen < graphicsDevices.length ) {
+            frame.setLocation(graphicsDevices[screen].getDefaultConfiguration().getBounds().x, graphicsDevices[0].getDefaultConfiguration().getBounds().y + frame.getY());
+        } else if( graphicsDevices.length > 0 ) {
+            frame.setLocation(graphicsDevices[0].getDefaultConfiguration().getBounds().x, graphicsDevices[0].getDefaultConfiguration().getBounds().y + frame.getY());
+        } else {
+            throw new RuntimeException( "No Screens Found" );
+        }
+    }
+
     protected ImageIcon createImageIcon(String path,
                                         String description) {
         java.net.URL imgURL = getClass().getResource(path);
@@ -177,22 +194,22 @@ public class Board {
         disp.setUndecorated(true);
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-
-
         // Mixing it up, and will probably implement in Settlers - this just seems like a better
         // solution
-        JFrame player1View = new JFrame();
+        this.player1View = new JFrame();
         player1View.setSize(1280, 1024);
         player1View.setUndecorated(true);
         player1View.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        JFrame player2View = new JFrame();
+        this.player2View = new JFrame();
         player2View.setSize(1280, 1024);
         player2View.setUndecorated(true);
         player2View.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         try {
-            BoardPanel player1Board = new BoardPanel(new ImageIcon(ImageIO.read(new File("/battleship2.png"))));
-            BoardPanel player2Board = new BoardPanel(boardDisplay);
+
+            BoardPanel player1Board = new BoardPanel(createImageIcon("playerview1.png", "player 1 view"));
+            BoardPanel player2Board = new BoardPanel(createImageIcon("playerview2.png", "player 2 view"));
+
             player1View.add(player1Board);
             player2View.add(player2Board);
 
@@ -200,10 +217,22 @@ public class Board {
             System.out.println(e);
             System.out.println("Apparently Battleship2 doesn't exist");
         }
+        disp.add(gameWindow);
 
+
+//        showOnScreen(0, player1View);
+//        showOnScreen(1, disp);
+//        showOnScreen(2, player2View);
+//        graphicsDevices[0].setFullScreenWindow(disp);
+//        graphicsDevices[1].setFullScreenWindow(player1View);
+//        player2View.setLocation(graphicsDevices[2].getDefaultConfiguration().getBounds().x, player2View.getY());
+        player1View.setLocation(0, -1024);
+        player1View.setBackground(Color.YELLOW);
+        disp.setLocation(0, 0);
+        player2View.setLocation(0, 1024);
+        player1View.setBackground(Color.RED);
         player2View.setVisible(true);
         player1View.setVisible(true);
-        //disp.add(gameWindow);
         disp.setVisible(true);
     }
 
@@ -357,15 +386,10 @@ class BoardPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         Graphics2D graphic = (Graphics2D) g;
 
-
         if (board != null) {
-            if (board.getDescription().contains("settlers")) {
-                graphic.clearRect(0, 0, 1080, 1080);
-                graphic.drawImage(board.getImage(), 0, 0, 1280, 1024, this);
-            } else {
-                graphic.clearRect(0, 0, 1024, 1024);
-                graphic.drawImage(board.getImage(), 0, 0, 1280, 1024, this);
-            }
+            graphic.clearRect(0, 0, 1024, 1024);
+            graphic.drawImage(board.getImage(), 0, 0, 1280, 1024, this);
+
         }
     }
 }
