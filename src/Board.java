@@ -23,19 +23,19 @@ public class Board {
     private String type;
     // BoardPanel (detailed below) representing the GUI of the board
     public BoardPanel gameWindow;
+    // JFrame and BoardPanels for Player Views 1 and 2
     public JFrame player1View;
     public JFrame player2View;
+    public BoardPanel player1Board;
+    public BoardPanel player2Board;
 
     // JFrame to store the board and display it
     public JFrame disp;
-    // JProbably doesn't belong here, but here's the graphics environment for the table
-    private GraphicsDevice[] graphicsDevices;
 
     public Board (String type) {
         this.board = new Square[8][8];
         this.type = type;
         Square square;
-        this.graphicsDevices = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
 
         // Find the board image
         try {
@@ -94,6 +94,8 @@ public class Board {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             disp.dispose();
+                            player1View.dispose();
+                            player2View.dispose();
                             pauseMenu.dispose();
                             JFrame launcher = Launcher.dispMenu();
                             launcher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,21 +133,6 @@ public class Board {
             @Override
             public void keyReleased(KeyEvent e) {}
         };
-    }
-
-    /**
-     * Displays multiple displays to the table
-     * @param screen
-     * @param frame
-     */
-    private void showOnScreen( int screen, JFrame frame ) {
-        if( screen > -1 && screen < graphicsDevices.length ) {
-            frame.setLocation(graphicsDevices[screen].getDefaultConfiguration().getBounds().x, graphicsDevices[0].getDefaultConfiguration().getBounds().y + frame.getY());
-        } else if( graphicsDevices.length > 0 ) {
-            frame.setLocation(graphicsDevices[0].getDefaultConfiguration().getBounds().x, graphicsDevices[0].getDefaultConfiguration().getBounds().y + frame.getY());
-        } else {
-            throw new RuntimeException( "No Screens Found" );
-        }
     }
 
     protected ImageIcon createImageIcon(String path,
@@ -204,11 +191,15 @@ public class Board {
         player2View.setSize(1280, 1024);
         player2View.setUndecorated(true);
         player2View.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        player1View.addKeyListener(pauseMenuListener());
+        player2View.addKeyListener(pauseMenuListener());
+        player2View.setFocusable(true);
+        player1View.setFocusable(true);
 
         try {
 
-            BoardPanel player1Board = new BoardPanel(createImageIcon("playerview1.png", "player 1 view"));
-            BoardPanel player2Board = new BoardPanel(createImageIcon("playerview2.png", "player 2 view"));
+            player1Board = new BoardPanel(createImageIcon("playerview1.png", "player 1 view"));
+            player2Board = new BoardPanel(createImageIcon("playerview2.png", "player 2 view"));
 
             player1View.add(player1Board);
             player2View.add(player2Board);
@@ -220,12 +211,6 @@ public class Board {
         disp.add(gameWindow);
 
 
-//        showOnScreen(0, player1View);
-//        showOnScreen(1, disp);
-//        showOnScreen(2, player2View);
-//        graphicsDevices[0].setFullScreenWindow(disp);
-//        graphicsDevices[1].setFullScreenWindow(player1View);
-//        player2View.setLocation(graphicsDevices[2].getDefaultConfiguration().getBounds().x, player2View.getY());
         player1View.setLocation(0, -1024);
         player1View.setBackground(Color.YELLOW);
         disp.setLocation(0, 0);

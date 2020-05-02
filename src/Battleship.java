@@ -32,9 +32,9 @@ public class Battleship extends Game {
             PiecePanel visual = new PiecePanel(i);
             if (visual.isShip(i)) {
                 if (i.getOwner()) {
-                    board.player1View.add(visual);
+                    board.player1Board.add(visual);
                 } else {
-                    board.player2View.add(visual);
+                    board.player2Board.add(visual);
                 }
             } else {
                 board.gameWindow.add(visual);
