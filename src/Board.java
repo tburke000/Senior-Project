@@ -29,7 +29,7 @@ public class Board {
     public BoardPanel player1Board;
     public BoardPanel player2Board;
 
-    //These two are for Battleship, they keep a hold of the pegs on the side of the board.
+    //These two are for Settlers, they hold player cards.
     public JPanel player1Tray;
     public JPanel player2Tray;
     // JFrame to store the board and display it
@@ -190,23 +190,14 @@ public class Board {
         disp.setSize(1280, 1024);
         disp.setUndecorated(true);
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        player1Tray = new JPanel();
-        player2Tray = new JPanel();
-        player1Tray.setPreferredSize(new Dimension(256, 1024));
-        player2Tray.setPreferredSize(new Dimension(256, 1024));
-        Color battleshipGrey = new Color(31,46,59);
-        player1Tray.setBackground(battleshipGrey);
-        player2Tray.setBackground(battleshipGrey);
 
-        // Mixing it up, and will probably implement in Settlers - this just seems like a better
-        // solution
+        // Create the necessary panels
         this.player1View = new JFrame();
-        player1View.setLayout(new BoxLayout(player1View.getContentPane(), BoxLayout.X_AXIS));
         player1View.setSize(1280, 1024);
         player1View.setUndecorated(true);
         player1View.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.player2View = new JFrame();
-        player2View.setLayout(new BoxLayout(player2View.getContentPane(), BoxLayout.X_AXIS));
+        player2View.setLayout(new BorderLayout());
         player2View.setSize(1280, 1024);
         player2View.setUndecorated(true);
         player2View.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -219,20 +210,17 @@ public class Board {
         try {
 
             player1Board = new BoardPanel(createImageIcon("playerview1.png", "player 1 view"));
-            player2Board = new BoardPanel(createImageIcon("playerview2.png", "player 2 view"));
-            player1Board.setPreferredSize(new Dimension(1024, 1024));
-            player2Board.setPreferredSize(new Dimension(1024, 1024));
-            player1View.add(player1Board);
-            player2View.add(player2Board);
+            player2Board = new BoardPanel(createImageIcon("playerview1.png", "player 2 view"));
+            player1Board.setPreferredSize(new Dimension(1280, 1024));
+            player2Board.setPreferredSize(new Dimension(1280, 1024));
+            player1View.add(player1Board, BorderLayout.CENTER);
+            player2View.add(player2Board, BorderLayout.CENTER);
 
         } catch (Exception e) {
             System.out.println(e);
             System.out.println("Apparently Battleship2 doesn't exist");
         }
         disp.add(gameWindow);
-        player1View.add(player1Tray);
-        player2View.add(player2Tray);
-
         player1View.setLocation(0, -1024);
         disp.setLocation(0, 0);
         player2View.setLocation(0, 1024);
@@ -422,14 +410,8 @@ class BoardPanel extends JPanel {
         Graphics2D graphic = (Graphics2D) g;
 
         if (board != null) {
-            if (board.getDescription().contains("player")) {
-                graphic.clearRect(0, 0, 1024, 1024);
-                graphic.drawImage(board.getImage(), 0, 0, 1024,1024, this);
-            } else {
                 graphic.clearRect(0, 0, 1024, 1024);
                 graphic.drawImage(board.getImage(), 0, 0, 1280, 1024, this);
-            }
-
         }
     }
 }

@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -26,10 +27,14 @@ public class Battleship extends Game {
         display();
     }
 
+    /**
+     * Displays all components for Battleship
+     */
     @Override
     public void display() {
         board.display();
-        Collections.reverse(pieces);
+//        Collections.reverse(pieces);
+        int j = 0;
         for (Piece i: pieces) {
             PiecePanel visual = new PiecePanel(i);
             if (visual.isShip(i)) {
@@ -40,17 +45,21 @@ public class Battleship extends Game {
                     board.player2Board.add(visual);
                 }
             } else {
+
                 if (i.getOwner()) {
-                    board.player1Tray.add(visual);
+                    board.player1Board.add(visual);
                 } else {
-                    board.player2Tray.add(visual);
+                    board.player2Board.add(visual);
                 }
-                visual.overbearing = true;
+                j+=40;
             }
 
         }
     }
 
+    /**
+     * Fills the list of ships for Battleship
+     */
     private void fillShips () {
         for (String i : ships) {
             Piece piece = new Piece(0, 0, true, i);
