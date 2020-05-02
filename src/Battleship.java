@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**
@@ -28,16 +29,23 @@ public class Battleship extends Game {
     @Override
     public void display() {
         board.display();
+        Collections.reverse(pieces);
         for (Piece i: pieces) {
             PiecePanel visual = new PiecePanel(i);
             if (visual.isShip(i)) {
                 if (i.getOwner()) {
                     board.player1Board.add(visual);
+
                 } else {
                     board.player2Board.add(visual);
                 }
             } else {
-                board.gameWindow.add(visual);
+                if (i.getOwner()) {
+                    board.player1Tray.add(visual);
+                } else {
+                    board.player2Tray.add(visual);
+                }
+                visual.overbearing = true;
             }
 
         }

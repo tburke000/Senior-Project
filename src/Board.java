@@ -29,6 +29,9 @@ public class Board {
     public BoardPanel player1Board;
     public BoardPanel player2Board;
 
+    //These two are for Battleship, they keep a hold of the pegs on the side of the board.
+    public JPanel player1Tray;
+    public JPanel player2Tray;
     // JFrame to store the board and display it
     public JFrame disp;
 
@@ -94,8 +97,10 @@ public class Board {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             disp.dispose();
-                            player1View.dispose();
-                            player2View.dispose();
+                            if (player1View != null && player2View != null) {
+                                player1View.dispose();
+                                player2View.dispose();
+                            }
                             pauseMenu.dispose();
                             JFrame launcher = Launcher.dispMenu();
                             launcher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -155,10 +160,16 @@ public class Board {
         } else if (type.equals("settlers")) {
             settlersDisp();
         } else {
+            player1View = new JFrame();
+            player2View = new JFrame();
             disp.setSize(1280, 1024);
-            disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            disp.setUndecorated(true);
 
+            disp.setUndecorated(true);
+            player1View.setSize(1280, 1024);
+            player1View.setLocation(0, -1024);
+            disp.setLocation(0, 0);
+            player2View.setLocation(0, 1024);
+            player2View.setSize(1280, 1024);
             gameWindow.setPreferredSize(new Dimension(1280, 1024));
             gameWindow.setBorder(new EmptyBorder(0, 128, 0, 128));
 
@@ -177,17 +188,25 @@ public class Board {
      */
     private void battleshipDisp () {
         disp.setSize(1280, 1024);
-        disp.setLocationRelativeTo(null);
         disp.setUndecorated(true);
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        player1Tray = new JPanel();
+        player2Tray = new JPanel();
+        player1Tray.setPreferredSize(new Dimension(256, 1024));
+        player2Tray.setPreferredSize(new Dimension(256, 1024));
+        Color battleshipGrey = new Color(31,46,59);
+        player1Tray.setBackground(battleshipGrey);
+        player2Tray.setBackground(battleshipGrey);
 
         // Mixing it up, and will probably implement in Settlers - this just seems like a better
         // solution
         this.player1View = new JFrame();
+        player1View.setLayout(new BoxLayout(player1View.getContentPane(), BoxLayout.X_AXIS));
         player1View.setSize(1280, 1024);
         player1View.setUndecorated(true);
         player1View.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.player2View = new JFrame();
+        player2View.setLayout(new BoxLayout(player2View.getContentPane(), BoxLayout.X_AXIS));
         player2View.setSize(1280, 1024);
         player2View.setUndecorated(true);
         player2View.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -196,11 +215,13 @@ public class Board {
         player2View.setFocusable(true);
         player1View.setFocusable(true);
 
+
         try {
 
             player1Board = new BoardPanel(createImageIcon("playerview1.png", "player 1 view"));
             player2Board = new BoardPanel(createImageIcon("playerview2.png", "player 2 view"));
-
+            player1Board.setPreferredSize(new Dimension(1024, 1024));
+            player2Board.setPreferredSize(new Dimension(1024, 1024));
             player1View.add(player1Board);
             player2View.add(player2Board);
 
@@ -209,13 +230,12 @@ public class Board {
             System.out.println("Apparently Battleship2 doesn't exist");
         }
         disp.add(gameWindow);
-
+        player1View.add(player1Tray);
+        player2View.add(player2Tray);
 
         player1View.setLocation(0, -1024);
-        player1View.setBackground(Color.YELLOW);
         disp.setLocation(0, 0);
         player2View.setLocation(0, 1024);
-        player1View.setBackground(Color.RED);
         player2View.setVisible(true);
         player1View.setVisible(true);
         disp.setVisible(true);
@@ -229,7 +249,9 @@ public class Board {
         disp.setUndecorated(true);
         disp.setLayout(new BoxLayout(disp.getContentPane(), BoxLayout.Y_AXIS));
         disp.setSize(new Dimension(1280, 1024));
-
+        player1View.setLocation(0, -1024);
+        disp.setLocation(0, 0);
+        player2View.setLocation(0, 1024);
         // Create the needed panels
         JPanel player1View = new JPanel(new BorderLayout());
         player1View.setMaximumSize(new Dimension(1280, 1024));
@@ -372,8 +394,13 @@ class BoardPanel extends JPanel {
         Graphics2D graphic = (Graphics2D) g;
 
         if (board != null) {
-            graphic.clearRect(0, 0, 1024, 1024);
-            graphic.drawImage(board.getImage(), 0, 0, 1280, 1024, this);
+            if (board.getDescription().contains("player")) {
+                graphic.clearRect(0, 0, 1024, 1024);
+                graphic.drawImage(board.getImage(), 0, 0, 1024,1024, this);
+            } else {
+                graphic.clearRect(0, 0, 1024, 1024);
+                graphic.drawImage(board.getImage(), 0, 0, 1280, 1024, this);
+            }
 
         }
     }
