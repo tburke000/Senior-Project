@@ -160,7 +160,6 @@ public class Piece {
                     this.image = ImageIO.read(new File("src/monopoly.png"));
                     System.out.println("Successfully found image for tile");
                     break;
-                // Fill this one in later, adjust for vertical, horizontal, diagonal, OOF
                 case "roadsd1":
                     if (owner) {
                         this.image = ImageIO.read(new File("src/road1d1.png"));
@@ -202,6 +201,24 @@ public class Piece {
                     } else {
                         this.image = ImageIO.read(new File("src/city2.png"));
                     }
+                case "brick":
+                    this.image = ImageIO.read(new File("src/brick.png"));
+                    break;
+                case "grain":
+                    this.image = ImageIO.read(new File("src/grain.png"));
+                    break;
+                case "lumber":
+                    this.image = ImageIO.read(new File("src/lumber.png"));
+                    break;
+                case "ore":
+                    this.image = ImageIO.read(new File("src/ore.png"));
+                    break;
+                case "wool":
+                    this.image = ImageIO.read(new File("src/wool.png"));
+                    break;
+                case "robber":
+                    this.image = ImageIO.read(new File("src/robber.png"));
+                    break;
                 default:
                     this.image = ImageIO.read(new File("src/desert.png"));
                     System.out.println("Successfully found image for tile");

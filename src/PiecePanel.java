@@ -77,7 +77,6 @@ public class PiecePanel extends JComponent implements ImageObserver {
 
             @Override
             public void mousePressed(MouseEvent e) {
-
                 handle.setComponentZOrder(handle, 100);
                 repaint();
             }

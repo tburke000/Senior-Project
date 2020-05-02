@@ -9,11 +9,13 @@ public class SettlersPlayer {
     private LinkedList<Resource> resources;
     private LinkedList<DevCard> devCards;
     int nVictoryPoints;
+    private boolean player;
 
-    public SettlersPlayer () {
+    public SettlersPlayer (boolean player) {
         this.resources = new LinkedList<>();
         this.devCards = new LinkedList<>();
         this.nVictoryPoints = 0;
+        this.player = player;
     }
 
     /**

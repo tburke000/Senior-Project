@@ -166,7 +166,7 @@ public class Board {
 
             disp.setUndecorated(true);
             player1View.setSize(1280, 1024);
-            player1View.setLocation(0, -1024);
+            player2View.setLocation(0, -1024);
             disp.setLocation(0, 0);
             player2View.setLocation(0, 1024);
             player2View.setSize(1280, 1024);
@@ -245,39 +245,47 @@ public class Board {
      * Displays the proper components for Settlers of Catan
      */
     private void settlersDisp () {
-        disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // Set up Frames
+        player1View = new JFrame();
+        player1View.setLayout(new BorderLayout());
+        player2View = new JFrame();
+        player2View.setLayout(new BorderLayout());
         disp.setUndecorated(true);
-        disp.setLayout(new BoxLayout(disp.getContentPane(), BoxLayout.Y_AXIS));
-        disp.setSize(new Dimension(1280, 1024));
-        player1View.setLocation(0, -1024);
+        player1View.setUndecorated(true);
+        player2View.setUndecorated(true);
         disp.setLocation(0, 0);
-        player2View.setLocation(0, 1024);
-        // Create the needed panels
-        JPanel player1View = new JPanel(new BorderLayout());
-        player1View.setMaximumSize(new Dimension(1280, 1024));
 
-        JPanel player2View = new JPanel(new BorderLayout());
-        player2View.setMaximumSize(new Dimension(1280, 1024));
-        BoardPanel gameWindow = new BoardPanel(boardDisplay);
-        gameWindow.setMaximumSize(new Dimension(1280, 1024));
+        player1View.setSize(1280, 1024);
+        player2View.setSize(1280, 1024);
+        player1View.setLocation(0, 1024);
+        player2View.setLocation(0, -1024);
 
+
+        gameWindow.setPreferredSize(new Dimension(1280, 1024));
+        disp.setExtendedState(Frame.MAXIMIZED_BOTH);
+        player1View.setExtendedState(Frame.MAXIMIZED_BOTH);
+        player2View.setExtendedState(Frame.MAXIMIZED_BOTH);
+
+        // Oh yeah, it's button time
         // Create two panels to house the vast amount of buttons
         JPanel thyHolyButtonHolder1 = new JPanel(new GridLayout(3, 2));
         thyHolyButtonHolder1.setBorder(new EmptyBorder(0, 200, 0, 200));
         JPanel thyHolyButtonHolder2 = new JPanel(new GridLayout(3, 2));
         thyHolyButtonHolder2.setBorder(new EmptyBorder(0, 200, 0, 200));
+        JPanel deckPanel1 = new JPanel();
+        JPanel deckPanel2 = new JPanel();
 
         // Create the vast amount of buttons
         // Roads
         JButton d1Road1 = new JButton("Diagonal Road");
         JButton d2Road1 = new JButton("Diagonal Road");
         JButton hRoad1 = new JButton("Horizontal Road");
-        JButton vRoad1 = new JButton("Horizontal Road");
+        JButton vRoad1 = new JButton("Vertical Road");
 
         JButton d1Road2 = new JButton("Diagonal Road");
         JButton d2Road2 = new JButton("Diagonal Road");
         JButton hRoad2 = new JButton("Horizontal Road");
-        JButton vRoad2 = new JButton("Horizontal Road");
+        JButton vRoad2 = new JButton("Vertical Road");
 
         // Cities
         JButton cities1 = new JButton("Cities");
@@ -286,6 +294,9 @@ public class Board {
         // Settlements
         JButton settlements1 = new JButton("Settlements");
         JButton settlements2 = new JButton("Settlements");
+        JButton endTurn1 = new JButton("End Turn");
+        JButton endTurn2 = new JButton("End Turn");
+
 
         // Bless the buttons with action listeners
         d1Road1.addActionListener(bigActionListener("roadsd1", true));
@@ -304,6 +315,9 @@ public class Board {
         settlements1.addActionListener(bigActionListener("cities", true));
         settlements2.addActionListener(bigActionListener("settlements", false));
 
+        endTurn1.addActionListener(bigActionListener("endTurn", true));
+        endTurn2.addActionListener(bigActionListener("endTurn", false));
+
         // Add things to player displays
         thyHolyButtonHolder1.add(d1Road1);
         thyHolyButtonHolder1.add(d2Road1);
@@ -311,12 +325,25 @@ public class Board {
         thyHolyButtonHolder1.add(vRoad1);
         thyHolyButtonHolder1.add(cities1);
         thyHolyButtonHolder1.add(settlements1);
+        thyHolyButtonHolder1.add(endTurn1);
 
-        // Add everything to the display
-        player1View.add(thyHolyButtonHolder1);
-        player2View.add(thyHolyButtonHolder2);
+        thyHolyButtonHolder2.add(d1Road2);
+        thyHolyButtonHolder2.add(d2Road2);
+        thyHolyButtonHolder2.add(hRoad2);
+        thyHolyButtonHolder2.add(vRoad2);
+        thyHolyButtonHolder2.add(cities2);
+        thyHolyButtonHolder2.add(settlements2);
+        thyHolyButtonHolder2.add(endTurn2);
+
+        deckPanel1.add(thyHolyButtonHolder1, BorderLayout.PAGE_END);
+        deckPanel2.add(thyHolyButtonHolder2);
+
+        player1View.add(deckPanel1);
+        player2View.add(deckPanel2);
+
         disp.add(gameWindow);
-        disp.add(player1View);
+        player1View.setVisible(true);
+        player2View.setVisible(true);
         disp.setVisible(true);
     }
 
@@ -372,6 +399,7 @@ public class Board {
                         }
                         gameWindow.add(cities);
                         break;
+
                     default:
                 }
             }
