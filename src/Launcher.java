@@ -37,6 +37,17 @@ public class Launcher {
 
         JFrame frame = new JFrame();
         JPanel titlePanel = new JPanel(new BorderLayout());
+        JFrame player1Mask = new JFrame();
+        JFrame player2Mask = new JFrame();
+        player1Mask.setLocation(0, -1024);
+        player2Mask.setLocation(0, 1024);
+        player1Mask.setSize(1280, 1024);
+        player2Mask.setSize(1280, 1024);
+        player1Mask.setUndecorated(true);
+        player2Mask.setUndecorated(true);
+        player1Mask.setVisible(true);
+        player2Mask.setVisible(true);
+
         try {
             frame.setLayout(new BorderLayout());
             JPanel panel = new JPanel();

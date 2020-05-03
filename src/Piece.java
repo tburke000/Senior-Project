@@ -164,28 +164,28 @@ public class Piece {
                     if (owner) {
                         this.image = ImageIO.read(new File("src/road1d1.png"));
                     } else {
-                        this.image = ImageIO.read(new File("src/road2d1"));
+                        this.image = ImageIO.read(new File("src/road2d1.png"));
                     }
                     break;
                 case "roadsd2":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/road1d2"));
+                        this.image = ImageIO.read(new File("src/road1d2.png"));
                     } else {
-                        this.image = ImageIO.read(new File("src/road2d2"));
+                        this.image = ImageIO.read(new File("src/road2d2.png"));
                     }
                     break;
                 case "roadsh":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/road1h"));
+                        this.image = ImageIO.read(new File("src/road1h.png"));
                     } else {
-                        this.image = ImageIO.read(new File("src/road2h"));
+                        this.image = ImageIO.read(new File("src/road2h.png"));
                     }
                     break;
                 case "roadsv":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/road1v"));
+                        this.image = ImageIO.read(new File("src/road1v.png"));
                     } else {
-                        this.image = ImageIO.read(new File("src/road2v"));
+                        this.image = ImageIO.read(new File("src/road2v.png"));
                     }
                     break;
                 case "settlements":
@@ -201,6 +201,7 @@ public class Piece {
                     } else {
                         this.image = ImageIO.read(new File("src/city2.png"));
                     }
+                    break;
                 case "brick":
                     this.image = ImageIO.read(new File("src/brick.png"));
                     break;
@@ -219,9 +220,12 @@ public class Piece {
                 case "robber":
                     this.image = ImageIO.read(new File("src/robber.png"));
                     break;
-                default:
+                case "Desert":
                     this.image = ImageIO.read(new File("src/desert.png"));
-                    System.out.println("Successfully found image for tile");
+                    break;
+                default:
+                    this.image = ImageIO.read(new File("src/uhoh.png"));
+                    break;
             }
         } catch (Exception e) {
             System.out.println(e + ": Error finding image");

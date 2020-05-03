@@ -52,7 +52,7 @@ public class PiecePanel extends JComponent implements ImageObserver {
                         graphic.drawImage(_image, 0, 0, 240, 80, this);
                 }
             } else if (isTile(_piece)) {
-                graphic.drawImage(_image,0,0, 222, 256, this);
+                graphic.drawImage(_image,0,0, 150, 150, this);
             } else if (isCard(_piece)) {
                 graphic.drawImage(_image,0,0,160,236, this);
             } else if (isPeg(_piece)){
@@ -131,7 +131,7 @@ public class PiecePanel extends JComponent implements ImageObserver {
                     return new Dimension(240, 80);
             }
         } else if (isTile(_piece)){
-            return new Dimension(222, 256);
+            return new Dimension(150, 150);
         } else if (isCard(_piece)) {
             return new Dimension(200,300);
         } else if (isPeg(_piece)) {
