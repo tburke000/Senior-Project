@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -156,47 +157,28 @@ public class Settlers extends Game {
 
 
     /**
-     * Gives the given player a resource, depending on the dice roll
-     * @param player
+     * Gives the given player a resource, depending on the dice roll. Only does so visually, as time ran out
+     * for rules
+     * @param player the player who's being given the resource
+     * @param playerTray the tray where the card needs to be added
      */
-    public void giveResource (boolean player) {
+    public static void giveResource (boolean player, JPanel playerTray) {
         int roll = 2 * (int) Math.random() * 6;
         if (roll == 2 || roll == 4 || roll == 5 || roll == 11) {
-            if (player) {
-                board.player1Tray.add(new PiecePanel(new Piece(0, 0, true, "wool")));
-            } else {
-                board.player2Tray.add(new PiecePanel(new Piece(0, 0, false, "wool")));
-            }
+                playerTray.add(new PiecePanel(new Piece(0, 0, player, "wool")));
         }
         if (roll == 9 || roll == 3 || roll == 11 || roll == 8) {
-            if (player) {
-                board.player1Tray.add(new PiecePanel(new Piece(0, 0, true, "lumber")));
-            } else {
-                board.player2Tray.add(new PiecePanel(new Piece(0, 0, false, "lumber")));
-            }
+            playerTray.add(new PiecePanel(new Piece(0, 0, player, "lumber")));
+
         }
         if (roll == 9 || roll == 12 || roll == 6 || roll == 4) {
-            if (player) {
-                board.player1Tray.add(new PiecePanel(new Piece(0, 0, true, "grain")));
-            } else {
-                board.player2Tray.add(new PiecePanel(new Piece(0, 0, false, "grain")));
-            }
+            playerTray.add(new PiecePanel(new Piece(0, 0, player, "grain")));
         }
         if (roll == 6 || roll == 10 || roll == 5) {
-            if (player) {
-                board.player1Tray.add(new PiecePanel(new Piece(0, 0, true, "brick")));
-            } else {
-                board.player2Tray.add(new PiecePanel(new Piece(0, 0, false, "brick")));
-            }
+            playerTray.add(new PiecePanel(new Piece(0, 0, player, "brick")));
         }
         if (roll == 10 || roll == 3 || roll == 8) {
-            if (player) {
-                board.player1Tray.add(new PiecePanel(new Piece(0, 0, true, "ore")));
-            } else {
-                board.player2Tray.add(new PiecePanel(new Piece(0, 0, false, "ore")));
-            }
+            playerTray.add(new PiecePanel(new Piece(0, 0, player, "ore")));
         }
-
     }
-
 }

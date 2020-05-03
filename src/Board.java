@@ -382,63 +382,63 @@ public class Board {
      */
     private ActionListener bigActionListener (String inputType, JPanel panelDisplay, boolean owner) {
         ActionListener bigAl = e -> {
-            PiecePanel visual;
-            switch (inputType) {
-                case "roadsd1":
-                     visual = new PiecePanel(new Piece(0,0, false, "roadsd1"));
-                    if (owner) {
-                     visual = new PiecePanel(new Piece(0,0, true, "roadsd1"));
-                    }
-                    break;
-                case "roadsd2":
-                    visual = new PiecePanel(new Piece(0,0, false, "roadsd2"));
-                    if (owner) {
-                        visual = new PiecePanel(new Piece(0,0, true, "roadsd2"));
-                    }
-                    break;
-                case "roadsv":
-                    visual = new PiecePanel(new Piece(0,0, false, "roadsv"));
-                    if (owner) {
-                        visual = new PiecePanel(new Piece(0,0, true, "roadsv"));
-                    }
-                    break;
-                case "settlements":
-                    visual = new PiecePanel(new Piece(0,0, false, "settlements"));
-                    if (owner) {
-                        visual = new PiecePanel(new Piece(0, 0, true, "settlements"));
-                    }
-                    break;
-                case "cities":
-                    visual = new PiecePanel(new Piece(0,0, false, "cities"));
-                    if (owner) {
-                        visual = new PiecePanel(new Piece(0, 0, true, "cities"));
-                    }
-                    break;
-                case "white peg":
-                    if (owner) {
-                        visual = new PiecePanel(new Piece(0, 0, true, "whitepeg"));
-                    } else {
-                        visual = new PiecePanel(new Piece(0, 0, false, "whitepeg"));
-                    }
-                    break;
-                case "red peg":
-                    if (owner) {
-                        visual = new PiecePanel(new Piece(0, 0, true, "redpeg"));
-                    } else {
-                        visual = new PiecePanel(new Piece(0, 0, false, "redpeg"));
-                    }
-                    break;
-                case "endTurn":
-                    // This should probably be changed.
-                    System.out.print("Hi there. This is where the system should generate a random number and assign\n resources accordingly. Unfortunately, we're having trouble processing \n that particular request. Please try again in the future.");
-                    visual = new PiecePanel(new Piece(0, 0, true, "uhoh"));
-                    break;
-                default:
-                    visual = new PiecePanel(new Piece(0, 0, true, "uhoh"));
+            if (inputType.equals("endTurn")) {
+                Settlers.giveResource(owner, panelDisplay);
+            } else {
+
+                PiecePanel visual;
+                switch (inputType) {
+                    case "roadsd1":
+                        visual = new PiecePanel(new Piece(0, 0, false, "roadsd1"));
+                        if (owner) {
+                            visual = new PiecePanel(new Piece(0, 0, true, "roadsd1"));
+                        }
+                        break;
+                    case "roadsd2":
+                        visual = new PiecePanel(new Piece(0, 0, false, "roadsd2"));
+                        if (owner) {
+                            visual = new PiecePanel(new Piece(0, 0, true, "roadsd2"));
+                        }
+                        break;
+                    case "roadsv":
+                        visual = new PiecePanel(new Piece(0, 0, false, "roadsv"));
+                        if (owner) {
+                            visual = new PiecePanel(new Piece(0, 0, true, "roadsv"));
+                        }
+                        break;
+                    case "settlements":
+                        visual = new PiecePanel(new Piece(0, 0, false, "settlements"));
+                        if (owner) {
+                            visual = new PiecePanel(new Piece(0, 0, true, "settlements"));
+                        }
+                        break;
+                    case "cities":
+                        visual = new PiecePanel(new Piece(0, 0, false, "cities"));
+                        if (owner) {
+                            visual = new PiecePanel(new Piece(0, 0, true, "cities"));
+                        }
+                        break;
+                    case "white peg":
+                        if (owner) {
+                            visual = new PiecePanel(new Piece(0, 0, true, "whitepeg"));
+                        } else {
+                            visual = new PiecePanel(new Piece(0, 0, false, "whitepeg"));
+                        }
+                        break;
+                    case "red peg":
+                        if (owner) {
+                            visual = new PiecePanel(new Piece(0, 0, true, "redpeg"));
+                        } else {
+                            visual = new PiecePanel(new Piece(0, 0, false, "redpeg"));
+                        }
+                        break;
+                    default:
+                        visual = new PiecePanel(new Piece(0, 0, true, "uhoh"));
+                }
+                panelDisplay.add(visual);
+                panelDisplay.revalidate();
             }
-            panelDisplay.add(visual);
-            panelDisplay.revalidate();
-        };
+            };
         return bigAl;
     }
 }
