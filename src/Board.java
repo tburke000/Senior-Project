@@ -172,9 +172,14 @@ public class Board {
             player2View.setSize(1280, 1024);
             gameWindow.setPreferredSize(new Dimension(1280, 1024));
             gameWindow.setBorder(new EmptyBorder(0, 128, 0, 128));
+            player1View.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            player2View.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
             disp.add(gameWindow);
             disp.setVisible(true);
+            player1View.setVisible(true);
+            player2View.setVisible(true);
         }
     }
 
@@ -190,15 +195,18 @@ public class Board {
         disp.setSize(1280, 1024);
         disp.setUndecorated(true);
         disp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        Color battleshipGrey = new Color(14,47,84);
 
         // Create the necessary panels
         this.player1View = new JFrame();
-        player1View.setSize(1280, 1024);
+        player1View.setLayout(new BoxLayout(player1View.getContentPane(), BoxLayout.X_AXIS));
+        player1View.setMaximumSize(new Dimension(1024, 1024));
         player1View.setUndecorated(true);
         player1View.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
         this.player2View = new JFrame();
-        player2View.setLayout(new BorderLayout());
-        player2View.setSize(1280, 1024);
+        player2View.setLayout(new BoxLayout(player2View.getContentPane(), BoxLayout.X_AXIS));
+        player2View.setSize(1024, 1024);
         player2View.setUndecorated(true);
         player2View.setExtendedState(JFrame.MAXIMIZED_BOTH);
         player1View.addKeyListener(pauseMenuListener());
@@ -206,20 +214,51 @@ public class Board {
         player2View.setFocusable(true);
         player1View.setFocusable(true);
 
+        player1Tray = new JPanel(new BorderLayout());
+        player1Tray.setPreferredSize(new Dimension(256, 1024));
+        player1Tray.setBackground(battleshipGrey);
+        player2Tray = new JPanel(new BorderLayout());
+        player2Tray.setPreferredSize(new Dimension(256, 1024));
+        player2Tray.setBackground(battleshipGrey);
+
+
+
+
 
         try {
-
             player1Board = new BoardPanel(createImageIcon("playerview1.png", "player 1 view"));
             player2Board = new BoardPanel(createImageIcon("playerview1.png", "player 2 view"));
-            player1Board.setPreferredSize(new Dimension(1280, 1024));
-            player2Board.setPreferredSize(new Dimension(1280, 1024));
+            player1Board.setPreferredSize(new Dimension(1024, 1024));
+            player2Board.setPreferredSize(new Dimension(1024, 1024));
             player1View.add(player1Board, BorderLayout.CENTER);
             player2View.add(player2Board, BorderLayout.CENTER);
 
+            // Buttons for peg spawning
+            JButton whitePegs1 = new JButton("White Peg");
+            whitePegs1.setPreferredSize(new Dimension(100, 100));
+            JButton redPegs1 = new JButton("Red Peg");
+            redPegs1.setPreferredSize(new Dimension(100, 100));
+            whitePegs1.addActionListener(bigActionListener("white peg", player1Board, true));
+            redPegs1.addActionListener(bigActionListener("red peg", player1Board, true));
+            player1Tray.add(whitePegs1, BorderLayout.PAGE_START);
+            player1Tray.add(redPegs1, BorderLayout.PAGE_END);
         } catch (Exception e) {
             System.out.println(e);
-            System.out.println("Apparently Battleship2 doesn't exist");
         }
+        player1View.add(player1Tray);
+        player2View.add(player2Tray);
+
+
+
+        JButton whitePegs2 = new JButton("White Peg");
+        whitePegs2.setPreferredSize(new Dimension(100, 100));
+        JButton redPegs2 = new JButton("Red Peg");
+        redPegs2.setPreferredSize(new Dimension(100, 100));
+        whitePegs2.addActionListener(bigActionListener("white peg", player2Board, false));
+        redPegs2.addActionListener(bigActionListener("red peg", player2Board, false));
+        player2Tray.add(whitePegs2, BorderLayout.PAGE_START);
+        player2Tray.add(redPegs2, BorderLayout.PAGE_END);
+
         disp.add(gameWindow);
         player1View.setLocation(0, -1024);
         disp.setLocation(0, 0);
@@ -287,24 +326,24 @@ public class Board {
 
 
         // Bless the buttons with action listeners
-        d1Road1.addActionListener(bigActionListener("roadsd1", true));
-        d2Road1.addActionListener(bigActionListener("roadsd2", true));
-        hRoad1.addActionListener(bigActionListener("roadsh", true));
-        vRoad1.addActionListener(bigActionListener("roadsv", true));
+        d1Road1.addActionListener(bigActionListener("roadsd1", gameWindow, true));
+        d2Road1.addActionListener(bigActionListener("roadsd2", gameWindow,true));
+        hRoad1.addActionListener(bigActionListener("roadsh", gameWindow,true));
+        vRoad1.addActionListener(bigActionListener("roadsv", gameWindow,true));
 
-        d1Road2.addActionListener(bigActionListener("roadsd1", false));
-        d2Road2.addActionListener(bigActionListener("roadsd2", false));
-        hRoad2.addActionListener(bigActionListener("roadsh", false));
-        vRoad2.addActionListener(bigActionListener("roadsv", false));
+        d1Road2.addActionListener(bigActionListener("roadsd1", gameWindow,false));
+        d2Road2.addActionListener(bigActionListener("roadsd2", gameWindow, false));
+        hRoad2.addActionListener(bigActionListener("roadsh", gameWindow,false));
+        vRoad2.addActionListener(bigActionListener("roadsv", gameWindow,false));
 
-        cities1.addActionListener(bigActionListener("cities", true));
-        cities2.addActionListener(bigActionListener("cities", false));
+        cities1.addActionListener(bigActionListener("cities", gameWindow,true));
+        cities2.addActionListener(bigActionListener("cities", gameWindow,false));
 
-        settlements1.addActionListener(bigActionListener("cities", true));
-        settlements2.addActionListener(bigActionListener("settlements", false));
+        settlements1.addActionListener(bigActionListener("cities", gameWindow,true));
+        settlements2.addActionListener(bigActionListener("settlements", gameWindow,false));
 
-        endTurn1.addActionListener(bigActionListener("endTurn", true));
-        endTurn2.addActionListener(bigActionListener("endTurn", false));
+        endTurn1.addActionListener(bigActionListener("endTurn", player1Tray, true));
+        endTurn2.addActionListener(bigActionListener("endTurn", player2Tray,false));
 
         // Add things to player displays
         thyHolyButtonHolder1.add(d1Road1);
@@ -339,58 +378,65 @@ public class Board {
      * Creates an action listener for Thy Holy Button Holder
      * @return An action listener for Thy Holy Button Holder
      */
-    private ActionListener bigActionListener (String inputType, boolean owner) {
-        ActionListener bigAl = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                PiecePanel road;
-                switch (inputType) {
-                    case "D1Roads":
-                         road = new PiecePanel(new Piece(0,0, false, "roadsd1"));
-                        if (owner) {
-                         road = new PiecePanel(new Piece(0,0, true, "roadsd1"));
-                        }
-                        gameWindow.add(road);
-                        break;
-                    case "D2Roads":
-                        road = new PiecePanel(new Piece(0,0, false, "roadsd2"));
-                        if (owner) {
-                            road = new PiecePanel(new Piece(0,0, true, "roadsd2"));
-                        }
-                        gameWindow.add(road);
-                        break;
-                    case "HRoads":
-                        road = new PiecePanel(new Piece(0,0, false, "roadsh"));
-                        if (owner) {
-                            road = new PiecePanel(new Piece(0,0, true, "roadsh"));
-                        }
-                        gameWindow.add(road);
-                        break;
-                    case "VRoads":
-                        road = new PiecePanel(new Piece(0,0, false, "roads"));
-                        if (owner) {
-                            road = new PiecePanel(new Piece(0,0, true, "roads"));
-                        }
-                        gameWindow.add(road);
-                        break;
-                    case "Settlements":
-                        PiecePanel settlements = new PiecePanel(new Piece(0,0, false, "settlements"));
-                        if (owner) {
-                            settlements = new PiecePanel(new Piece(0, 0, true, "settlements"));
-                        }
-                        gameWindow.add(settlements);
-                        break;
-                    case "Cities":
-                        PiecePanel cities = new PiecePanel(new Piece(0,0, false, "cities"));
-                        if (owner) {
-                            cities = new PiecePanel(new Piece(0, 0, true, "cities"));
-                        }
-                        gameWindow.add(cities);
-                        break;
-
-                    default:
-                }
+    private ActionListener bigActionListener (String inputType, JPanel panelDisplay, boolean owner) {
+        ActionListener bigAl = e -> {
+            PiecePanel visual;
+            switch (inputType) {
+                case "D1Roads":
+                     visual = new PiecePanel(new Piece(0,0, false, "roadsd1"));
+                    if (owner) {
+                     visual = new PiecePanel(new Piece(0,0, true, "roadsd1"));
+                    }
+                    break;
+                case "D2Roads":
+                    visual = new PiecePanel(new Piece(0,0, false, "roadsd2"));
+                    if (owner) {
+                        visual = new PiecePanel(new Piece(0,0, true, "roadsd2"));
+                    }
+                    break;
+                case "HRoads":
+                    visual = new PiecePanel(new Piece(0,0, false, "roadsh"));
+                    if (owner) {
+                        visual = new PiecePanel(new Piece(0,0, true, "roadsh"));
+                    }
+                    break;
+                case "VRoads":
+                    visual = new PiecePanel(new Piece(0,0, false, "roads"));
+                    if (owner) {
+                        visual = new PiecePanel(new Piece(0,0, true, "roads"));
+                    }
+                    break;
+                case "Settlements":
+                    visual = new PiecePanel(new Piece(0,0, false, "settlements"));
+                    if (owner) {
+                        visual = new PiecePanel(new Piece(0, 0, true, "settlements"));
+                    }
+                    break;
+                case "Cities":
+                    visual = new PiecePanel(new Piece(0,0, false, "cities"));
+                    if (owner) {
+                        visual = new PiecePanel(new Piece(0, 0, true, "cities"));
+                    }
+                    break;
+                case "white peg":
+                    if (owner) {
+                        visual = new PiecePanel(new Piece(0, 0, true, "whitepeg"));
+                    } else {
+                        visual = new PiecePanel(new Piece(0, 0, false, "whitepeg"));
+                    }
+                    break;
+                case "red peg":
+                    if (owner) {
+                        visual = new PiecePanel(new Piece(0, 0, true, "redpeg"));
+                    } else {
+                        visual = new PiecePanel(new Piece(0, 0, false, "redpeg"));
+                    }
+                    break;
+                default:
+                    visual = new PiecePanel(new Piece(0, 0, true, "robber"));
             }
+            panelDisplay.add(visual);
+            panelDisplay.revalidate();
         };
         return bigAl;
     }
@@ -410,8 +456,13 @@ class BoardPanel extends JPanel {
         Graphics2D graphic = (Graphics2D) g;
 
         if (board != null) {
+            if (board.getDescription().contains("player")) {
+                graphic.clearRect(0, 0, 1024, 1024);
+                graphic.drawImage(board.getImage(), 0, 0, 1024, 1024, this);
+            } else {
                 graphic.clearRect(0, 0, 1024, 1024);
                 graphic.drawImage(board.getImage(), 0, 0, 1280, 1024, this);
+            }
         }
     }
 }
