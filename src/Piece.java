@@ -31,200 +31,200 @@ public class Piece {
             switch (type) {
                 case "checker":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/RedChecker.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("RedChecker.png"));
                         System.out.println("Image Found: Red Checker");
                     } else {
-                        this.image = ImageIO.read(new File("src/BlackChecker.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("BlackChecker.png"));
                         System.out.println("Image Found: Black Checker");
                     }
                     break;
                 case "rook":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/WhiteRook.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("WhiteRook.png"));
                         System.out.println("Image Found: White Rook");
                     } else {
-                        this.image = ImageIO.read(new File("src/BlackRook.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("BlackRook.png"));
                         System.out.println("Image Found: Black Rook");
                     }
                     break;
                 case "knight":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/WhiteKnight.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("WhiteKnight.png"));
                         System.out.println("Image Found: White Knight");
                     } else {
-                        this.image = ImageIO.read(new File("src/BlackKnight.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("BlackKnight.png"));
                         System.out.println("Image Found: Black Knight");
                     }
                     break;
                 case "bishop":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/WhiteBishop.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("WhiteBishop.png"));
                         System.out.println("Image Found: White Bishop");
                     } else {
-                        this.image = ImageIO.read(new File("src/BlackBishop.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("BlackBishop.png"));
                         System.out.println("Image Found: Black Bishop");
                     }
                     break;
                 case "queen":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/WhiteQueen.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("WhiteQueen.png"));
                         System.out.println("Image Found: White Queen");
                     } else {
-                        this.image = ImageIO.read(new File("src/BlackQueen.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("BlackQueen.png"));
                         System.out.println("Image Found: Black Queen");
                     }
                     break;
                 case "king":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/WhiteKingChess.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("WhiteKingChess.png"));
                         System.out.println("Image Found: White King");
                     } else {
-                        this.image = ImageIO.read(new File("src/BlackKingChess.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("BlackKingChess.png"));
                         System.out.println("Image Found: Black King");
                     }
                     break;
                 case "pawn":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/WhitePawn.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("WhitePawn.png"));
                         System.out.println("Image Found: White Pawn");
                     } else {
-                        this.image = ImageIO.read(new File("src/BlackPawn.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("BlackPawn.png"));
                         System.out.println("Image Found: Black Pawn");
                     }
                     break;
                 case "carrier":
-                    this.image = ImageIO.read(new File("src/Carrier.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("Carrier.png"));
                     System.out.println("Image Found: Carrier");
                     break;
                 case "battleship":
-                    this.image = ImageIO.read(new File("src/BattleshipV.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("BattleshipV.png"));
                     System.out.println("Image Found: Battleship");
                     break;
                 case "destroyer":
-                    this.image = ImageIO.read(new File("src/DestroyerH.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("DestroyerH.png"));
                     System.out.println("Image Found: Destroyer");
                     break;
                 case "cruiser":
-                    this.image = ImageIO.read(new File("src/CruiserV.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("CruiserV.png"));
                     System.out.println("Image Found: Cruiser");
                     break;
                 case "submarine":
-                    this.image = ImageIO.read(new File("src/SubH.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("SubH.png"));
                     System.out.println("Image Found: Submarine");
                     break;
                 case "redpeg":
-                    this.image = ImageIO.read(new File("src/RedPeg.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("RedPeg.png"));
                     System.out.println("Image Found: Red Peg");
                     break;
                 case "whitepeg":
-                    this.image = ImageIO.read(new File("src/WhitePeg.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("WhitePeg.png"));
                     System.out.println("Image Found: White Peg");
                     break;
                 case "Hill":
-                    this.image = ImageIO.read(new File("src/hills.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("hills.png"));
                     System.out.println("Successfully found image for Hills tile");
                     break;
                 case "Pasture":
-                    this.image = ImageIO.read(new File("src/pasture.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("pasture.png"));
                     System.out.println("Successfully found image for Pasture tile");
                     break;
                 case "Mountain":
-                    this.image = ImageIO.read(new File("src/mountains.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("mountains.png"));
                     System.out.println("Successfully found image for Mountain tile");
                     break;
                 case "Field":
-                    this.image = ImageIO.read(new File("src/fields.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("fields.png"));
                     System.out.println("Successfully found image for Fields tile");
                     break;
                 case "Forest":
-                    this.image = ImageIO.read(new File("src/forests.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("forests.png"));
                     System.out.println("Successfully found image for Forest tile");
                     break;
                 case "Knight":
-                    this.image = ImageIO.read(new File("src/knight.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("knight.png"));
                     System.out.println("Image Found: Knight Card");
                     break;
                 case "Victory Point":
-                    this.image = ImageIO.read(new File("src/victory point.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("victory point.png"));
                     System.out.println("Successfully found image for tile");
                     break;
                 case "Road Building":
-                    this.image = ImageIO.read(new File("src/road building.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("road building.png"));
                     System.out.println("Successfully found image for Road Building Card");
                     break;
                 case "Year of Plenty":
-                    this.image = ImageIO.read(new File("src/year of plenty.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("year of plenty.png"));
                     System.out.println("Successfully found image for Victory Point Card");
                     break;
                 case "Monopoly":
-                    this.image = ImageIO.read(new File("src/monopoly.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("monopoly.png"));
                     System.out.println("Successfully found image for tile");
                     break;
                 case "roadsd1":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/road1d1.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("road1d1.png"));
                     } else {
-                        this.image = ImageIO.read(new File("src/road2d1.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("road2d1.png"));
                     }
                     break;
                 case "roadsd2":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/road1d2.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("road1d2.png"));
                     } else {
-                        this.image = ImageIO.read(new File("src/road2d2.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("road2d2.png"));
                     }
                     break;
                 case "roadsh":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/road1h.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("road1h.png"));
                     } else {
-                        this.image = ImageIO.read(new File("src/road2h.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("road2h.png"));
                     }
                     break;
                 case "roadsv":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/road1v.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("road1v.png"));
                     } else {
-                        this.image = ImageIO.read(new File("src/road2v.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("road2v.png"));
                     }
                     break;
                 case "settlements":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/settlement1.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("settlement1.png"));
                     } else {
-                        this.image = ImageIO.read(new File("src/settlement2.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("settlement2.png"));
                     }
                     break;
                 case "cities":
                     if (owner) {
-                        this.image = ImageIO.read(new File("src/city1.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("city1.png"));
                     } else {
-                        this.image = ImageIO.read(new File("src/city2.png"));
+                        this.image = ImageIO.read(this.getClass().getResourceAsStream("city2.png"));
                     }
                     break;
                 case "brick":
-                    this.image = ImageIO.read(new File("src/brick.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("brick.png"));
                     break;
                 case "grain":
-                    this.image = ImageIO.read(new File("src/grain.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("grain.png"));
                     break;
                 case "lumber":
-                    this.image = ImageIO.read(new File("src/lumber.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("lumber.png"));
                     break;
                 case "ore":
-                    this.image = ImageIO.read(new File("src/ore.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("ore.png"));
                     break;
                 case "wool":
-                    this.image = ImageIO.read(new File("src/wool.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("wool.png"));
                     break;
                 case "robber":
-                    this.image = ImageIO.read(new File("src/robber.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("robber.png"));
                     break;
                 case "Desert":
-                    this.image = ImageIO.read(new File("src/desert.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("desert.png"));
                     break;
                 default:
-                    this.image = ImageIO.read(new File("src/uhoh.png"));
+                    this.image = ImageIO.read(this.getClass().getResourceAsStream("uhoh.png"));
                     break;
             }
         } catch (Exception e) {

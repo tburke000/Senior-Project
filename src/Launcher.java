@@ -58,7 +58,7 @@ public class Launcher {
             gbc.fill = GridBagConstraints.HORIZONTAL;
 
 
-            BufferedImage image = ImageIO.read(new File("src/logo.png"));
+            BufferedImage image = ImageIO.read(Launcher.class.getResourceAsStream("logo.png"));
             JLabel logo  = new JLabel(new ImageIcon(image));
             logo.setSize(new Dimension(700, 533));
             frame.add(logo, BorderLayout.PAGE_START);
